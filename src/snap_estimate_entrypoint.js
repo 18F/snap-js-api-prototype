@@ -1,3 +1,5 @@
+// @flow
+
 import { GrossIncomeTest } from './tests/gross_income_test.js';
 import { STATE_OPTIONS } from './program_data/state_options.js';
 import { NET_MONTHLY_INCOME_LIMITS } from './program_data/net_monthly_income_limits.js';
@@ -7,8 +9,45 @@ const DEFAULT_GROSS_INCOME_LIMIT_FACTOR = 1.3;
 const DEFAULT_RESOURCE_LIMIT_ELDERLY_OR_DISABLED = 3500;
 const DEFAULT_RESOURCE_LIMIT_NON_ELDERLY_OR_DISABLED = 2250;
 
+/*::
+interface SnapEntrypointInputs {
+  state_or_territory: string;
+  monthly_job_income: string;
+  monthly_non_job_income: string;
+  household_size: string;
+  household_includes_elderly_or_disabled: string;
+  resources: string;
+  use_emergency_allotment: string;
+}
+*/
+
 class SnapEstimateEntrypoint {
-  constructor(inputs) {
+  /*::
+
+  // Inputs
+  state_or_territory: string;
+  monthly_job_income: string;
+  monthly_non_job_income: string;
+  household_size: string;
+  household_includes_elderly_or_disabled: string;
+  resources: string;
+  use_emergency_allotment: string;
+
+  // State Options
+  state_options: Object;
+  gross_income_limit_factor: number;
+  resource_limit_elderly_or_disabled: number;
+  resource_limit_elderly_or_disabled_income_twice_fpl: number;
+  resource_limit_non_elderly_or_disabled: number;
+  child_support_payments_treatment: string;
+  net_monthly_income_limit: number;
+
+  // Outputs
+  estimated_benefit: number;
+  estimated_eligibility: boolean;
+  */
+
+  constructor(inputs /*: SnapEntrypointInputs */) {
     this.state_or_territory = inputs.state_or_territory;
     this.monthly_job_income = inputs.monthly_job_income;
     this.monthly_non_job_income = inputs.monthly_non_job_income;
@@ -60,8 +99,8 @@ class SnapEstimateEntrypoint {
 
     const gross_income_calculation = gross_income_test.calculate();
 
-    this.estimatedBenefit = 194;
-    this.estimatedEligibility = true;
+    this.estimated_benefit = 194;
+    this.estimated_eligibility = true;
   }
 
   gross_income() {

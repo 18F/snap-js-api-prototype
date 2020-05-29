@@ -43,16 +43,16 @@ When('we run the benefit estimator...', function () {
 
   snapEstimator.calculate();
 
-  this.estimatedBenefit = snapEstimator.estimatedBenefit;
-  this.estimatedEligibility = snapEstimator.estimatedEligibility;
+  this.estimated_benefit = snapEstimator.estimated_benefit;
+  this.estimated_eligibility = snapEstimator.estimated_eligibility;
 });
 
-Then('we find the estimated benefit is ${int} per month', function (estimatedBenefit) {
-  assert.equal(this.estimatedBenefit, estimatedBenefit);
+Then('we find the estimated benefit is ${int} per month', function (estimated_benefit) {
+  assert.equal(this.estimated_benefit, estimated_benefit);
 });
 
-Then('we find the family is likely {word}', function (estimatedEligibility) {
-  const eligibilityBool = (estimatedEligibility === 'eligible');
+Then('we find the family is likely {word}', function (estimated_eligibility) {
+  const eligibility_bool = (estimated_eligibility === 'eligible');
 
-  assert.equal(this.estimatedEligibility, eligibilityBool);
+  assert.equal(this.estimated_eligibility, eligibility_bool);
 });
