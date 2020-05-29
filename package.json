@@ -1,0 +1,23 @@
+{
+  "name": "snap-js-rules",
+  "version": "1.0.0",
+  "description": "A SNAP eligibility calculator in JavaScript",
+  "private": "true",
+  "dependencies": {
+    "cucumber": "^6.0.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.1",
+    "@babel/preset-env": "^7.10.1",
+    "@babel/register": "^7.10.1",
+    "babel-loader": "^8.1.0",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/cucumber-js --require-module @babel/core --require-module @babel/register --require-module @babel/preset-env features",
+    "build": "npx webpack --config webpack.config.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
