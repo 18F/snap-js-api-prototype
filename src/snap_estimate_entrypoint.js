@@ -86,7 +86,6 @@ class SnapEstimateEntrypoint {
   }
 
   calculate() {
-
     const gross_income_test = new GrossIncomeTest({
       'state_or_territory': this.state_or_territory,
       'household_size': this.household_size,
@@ -100,7 +99,7 @@ class SnapEstimateEntrypoint {
     const gross_income_calculation = gross_income_test.calculate();
 
     this.estimated_benefit = 194;
-    this.estimated_eligibility = true;
+    this.estimated_eligibility = gross_income_calculation.result;
   }
 
   gross_income() {
