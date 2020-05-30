@@ -118,7 +118,7 @@ class SnapEstimateEntrypoint {
     }
 
     net_income() {
-        return 0; // stub
+        return this.gross_income(); // stub
     }
 }
 
