@@ -52,9 +52,21 @@ Feature: Illinois scenarios, no EA waiver
       Then we find the family is likely eligible
       And we find the estimated benefit is $1456 per month
 
-  Scenario: Ineligible household
+  # GROSS INCOME TEST #
+
+  Scenario: Household does not meet gross income test
     Given a 1-person household
     And the household does not include an elderly or disabled member
     And the household has other income of $2000 monthly
     When we run the benefit estimator...
       Then we find the family is likely ineligible
+
+  # MINIMUM ALLOTMENT #
+
+  # Scenario: Minimum allotment
+  #   Given a 1-person household
+  #   And the household does not include an elderly or disabled member
+  #   And the household has other income of $1040 monthly
+  #   When we run the benefit estimator...
+  #     Then we find the family is likely eligible
+  #     And we find the estimated benefit is $16 per month
