@@ -14,8 +14,12 @@ Given('a {int}-person household', function (householdSize) {
   this.householdSize = householdSize
 });
 
-Given('the household does {word} include an elderly or disabled member', function (elderlyOrDisabled) {
-  this.elderlyOrDisabled = (elderlyOrDisabled !== 'not');
+Given('the household does not include an elderly or disabled member', function () {
+  this.elderlyOrDisabled = false;
+});
+
+Given('the household does include an elderly or disabled member', function () {
+  this.elderlyOrDisabled = true;
 });
 
 Given('the household has earned income of ${int} monthly', function (monthlyEarnedIncome) {

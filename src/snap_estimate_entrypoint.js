@@ -2,7 +2,10 @@
 
 import { STATE_OPTIONS } from './program_data/state_options.js';
 import { NET_MONTHLY_INCOME_LIMITS } from './program_data/net_monthly_income_limits.js';
+
 import { GrossIncomeTest } from './tests/gross_income_test.js';
+import { AssetTest } from './tests/asset_test.js';
+
 import { BenefitAmountEstimate } from './amount/benefit_amount_estimate.js';
 import { FetchIncomeLimit } from './program_data_api/fetch_income_limit.js';
 
@@ -87,18 +90,17 @@ class SnapEstimateEntrypoint {
     }
 
     calculate() {
-        const gross_income_test = new GrossIncomeTest({
-            'state_or_territory': this.state_or_territory,
-            'household_size': this.household_size,
-            'household_includes_elderly_or_disabled': this.household_includes_elderly_or_disabled,
-            'resources': this.resources,
-            'gross_income': this.gross_income(),
-            'net_monthly_income_limit': this.net_monthly_income_limit,
-            'gross_income_limit_factor': this.gross_income_limit_factor,
+        const eligibility_tests = this.initialize_eligibility_tests();
+
+        const eligibility_calculations = eligibility_tests.map((eligibility_test) => {
+            return eligibility_test.calculate();
         });
 
-        const gross_income_calculation = gross_income_test.calculate();
-        this.estimated_eligibility = gross_income_calculation.result;
+        const eligibility_results = eligibility_calculations.map((calculation) => {
+            return calculation.result;
+        });
+
+        this.estimated_eligibility = !(eligibility_results.includes(false));
 
         const benefit_amount_estimate = new BenefitAmountEstimate({
             'state_or_territory': this.state_or_territory,
@@ -116,6 +118,28 @@ class SnapEstimateEntrypoint {
             'estimated_benefit': this.estimated_benefit,
             'estimated_eligibility': this.estimated_eligibility,
         };
+    }
+
+    initialize_eligibility_tests() {
+        return [
+            new GrossIncomeTest({
+                'state_or_territory': this.state_or_territory,
+                'household_size': this.household_size,
+                'household_includes_elderly_or_disabled': this.household_includes_elderly_or_disabled,
+                'resources': this.resources,
+                'gross_income': this.gross_income(),
+                'net_monthly_income_limit': this.net_monthly_income_limit,
+                'gross_income_limit_factor': this.gross_income_limit_factor,
+            }),
+            new AssetTest({
+                'state_or_territory': this.state_or_territory,
+                'household_size': this.household_size,
+                'household_includes_elderly_or_disabled': this.household_includes_elderly_or_disabled,
+                'resources': this.resources,
+                'resource_limit_elderly_or_disabled': this.resource_limit_elderly_or_disabled,
+                'resource_limit_non_elderly_or_disabled': this.resource_limit_non_elderly_or_disabled
+            })
+        ];
     }
 
     gross_income() {
