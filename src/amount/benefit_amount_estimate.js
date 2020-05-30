@@ -1,6 +1,6 @@
 // @flow
 
-class BenefitAmountEstimate {
+export class BenefitAmountEstimate {
     /*:
     is_eligible: boolean;
     use_emergency_allotment: boolean;
