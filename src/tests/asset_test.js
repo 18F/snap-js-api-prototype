@@ -1,9 +1,9 @@
 class AssetTest {
-  constructor(inputs) {
-  }
+    constructor(inputs) {
+    }
 
-  calculate() {
-  }
+    calculate() {
+    }
 }
 
 exports.AssetTest = AssetTest;

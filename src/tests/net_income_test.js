@@ -1,9 +1,9 @@
 class NetIncomeTest {
-  constructor(inputs) {
-  }
+    constructor(inputs) {
+    }
 
-  calculate() {
-  }
+    calculate() {
+    }
 }
 
 exports.NetIncomeTest = NetIncomeTest;
