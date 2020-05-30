@@ -2,12 +2,12 @@ import { Given, Then, When } from 'cucumber';
 import assert from 'assert';
 import { SnapEstimateEntrypoint } from '../../src/snap_estimate_entrypoint.js';
 
-Given('the household is in {word}', function (stateOrTerritory) {
-  this.stateOrTerritory = 'AK';
+Given('the household is in {word}', function (state_or_territory) {
+  this.state_or_territory = state_or_territory;
 });
 
-Given('{word} emergency allotment waiver', function (emergencyAllotment) {
-  this.emergencyAllotment = (emergencyAllotment === 'an');
+Given('{word} emergency allotment waiver', function (emergency_allotment) {
+  this.emergency_allotment = (emergency_allotment === 'an');
 });
 
 Given('a {int}-person household', function (householdSize) {
@@ -36,13 +36,13 @@ Given('the household has assets of ${int}', function (assets) {
 
 When('we run the benefit estimator...', function () {
   const snapEstimator = new SnapEstimateEntrypoint({
-    'state_or_territory': this.stateOrTerritory,
+    'state_or_territory': this.state_or_territory,
     'monthly_job_income': this.monthlyEarnedIncome,
     'monthly_non_job_income': this.monthlyOtherIncome,
     'household_size': this.householdSize,
     'household_includes_elderly_or_disabled': this.elderlyOrDisabled,
     'resources': this.assets,
-    'use_emergency_allotment': this.emergencyAllotment,
+    'use_emergency_allotment': this.emergency_allotment,
   });
 
   snapEstimator.calculate();
