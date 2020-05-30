@@ -1,7 +1,7 @@
-// @flow
+import { FetchMaxAllotment } from '../program_data_api/fetch_max_allotment.js';
 
 export class BenefitAmountEstimate {
-    /*:
+    /*::
     is_eligible: boolean;
     use_emergency_allotment: boolean;
     */
@@ -9,8 +9,6 @@ export class BenefitAmountEstimate {
     constructor(inputs) {
         this.state_or_territory = inputs.state_or_territory;
         this.household_size = inputs.household_size;
-        this.max_allotments = inputs.max_allotments;
-        this.min_allotments = inputs.min_allotments;
         this.is_eligible = inputs.is_eligible;
         this.net_income = inputs.net_income;
         this.use_emergency_allotment = inputs.use_emergency_allotment;
@@ -31,5 +29,17 @@ export class BenefitAmountEstimate {
         } else {
             return this.calculate_without_emergency_allotment();
         }
+    }
+
+    calculate_with_emergency_allotment() {
+        return {
+            'result': 194
+        };
+    }
+
+    calculate_without_emergency_allotment() {
+        return {
+            'result': 194
+        };
     }
 }

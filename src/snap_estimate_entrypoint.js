@@ -1,8 +1,9 @@
 // @flow
 
-import { GrossIncomeTest } from './tests/gross_income_test.js';
 import { STATE_OPTIONS } from './program_data/state_options.js';
 import { NET_MONTHLY_INCOME_LIMITS } from './program_data/net_monthly_income_limits.js';
+import { GrossIncomeTest } from './tests/gross_income_test.js';
+import { BenefitAmountEstimate } from './amount/benefit_amount_estimate.js';
 import { FetchIncomeLimit } from './program_data_api/fetch_income_limit.js';
 
 const DEFAULT_GROSS_INCOME_LIMIT_FACTOR = 1.3;
@@ -97,9 +98,19 @@ class SnapEstimateEntrypoint {
         });
 
         const gross_income_calculation = gross_income_test.calculate();
-
-        this.estimated_benefit = 194;
         this.estimated_eligibility = gross_income_calculation.result;
+
+        const benefit_amount_estimate = new BenefitAmountEstimate({
+            'state_or_territory': this.state_or_territory,
+            'household_size': this.household_size,
+            'is_eligible': this.estimated_eligibility,
+            'net_income': this.net_income(),
+            'use_emergency_allotment': false,
+        });
+
+        const benefit_amount_calculation = benefit_amount_estimate.calculate();
+
+        this.estimated_benefit = benefit_amount_calculation.result;
     }
 
     gross_income() {

@@ -1,5 +1,4 @@
 export class FetchIncomeLimit {
-
     constructor(inputs) {
         this.state_or_territory = inputs.state_or_territory;
         this.household_size = inputs.household_size;
