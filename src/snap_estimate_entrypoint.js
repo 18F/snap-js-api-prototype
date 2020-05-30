@@ -111,6 +111,11 @@ class SnapEstimateEntrypoint {
         const benefit_amount_calculation = benefit_amount_estimate.calculate();
 
         this.estimated_benefit = benefit_amount_calculation.result;
+
+        return {
+            'estimated_benefit': this.estimated_benefit,
+            'estimated_eligibility': this.estimated_eligibility,
+        }
     }
 
     gross_income() {
