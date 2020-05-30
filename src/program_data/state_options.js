@@ -1,4 +1,26 @@
-export const STATE_OPTIONS = {
+// @flow strict
+
+/*::
+type StateOptions = {
+    [State]: StateYearOption;
+}
+
+type StateYearOption = {
+    '2020': IndividualStateOption;
+}
+
+type IndividualStateOption = {
+    uses_bbce: boolean;
+    child_support_payments_treatment: string;
+    mandatory_standard_utility_allowances?: boolean;
+    gross_income_limit_factor?: number;
+    resource_limit_elderly_or_disabled?: ?number;
+    resource_limit_elderly_or_disabled_income_twice_fpl?: ?number;
+    resource_limit_non_elderly_or_disabled?: ?number;
+}
+*/
+
+export const STATE_OPTIONS /*: StateOptions */ = {
     'AK': {
         '2020': {
             'child_support_payments_treatment': 'DEDUCT',

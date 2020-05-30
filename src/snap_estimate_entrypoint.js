@@ -14,7 +14,7 @@ const DEFAULT_RESOURCE_LIMIT_NON_ELDERLY_OR_DISABLED = 2250;
 
 /*::
 interface SnapEntrypointInputs {
-    state_or_territory: string;
+    state_or_territory: State;
     monthly_job_income: number;
     monthly_non_job_income: number;
     household_size: number;
