@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
   entry: './src/snap_estimate_entrypoint.js',
   output: {
-    filename: 'main.js',
+    filename: 'api.js',
     path: path.resolve(__dirname, 'dist'),
   },
   module: {
