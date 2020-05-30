@@ -18,7 +18,7 @@ export class BenefitAmountEstimate {
         if (!this.is_eligible) {
             return {
                 'name': 'Estimated Benefit Calculation',
-                'amount': 0,
+                'result': 0,
                 'explanation': ['Likely not eligible for SNAP.'],
                 'sort_order': 5
             };
