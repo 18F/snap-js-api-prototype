@@ -1,7 +1,6 @@
 // @flow
 
 import { STATE_OPTIONS } from './program_data/state_options.js';
-import { NET_MONTHLY_INCOME_LIMITS } from './program_data/net_monthly_income_limits.js';
 
 import { GrossIncomeTest } from './tests/gross_income_test.js';
 import { AssetTest } from './tests/asset_test.js';
@@ -85,7 +84,6 @@ class SnapEstimateEntrypoint {
         this.net_monthly_income_limit = new FetchIncomeLimit({
             'state_or_territory': this.state_or_territory,
             'household_size': this.household_size,
-            'income_limit_data': NET_MONTHLY_INCOME_LIMITS,
         }).income_limit_lookup();
     }
 
