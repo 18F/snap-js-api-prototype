@@ -5,6 +5,7 @@ module.exports = {
   output: {
     filename: 'api.js',
     path: path.resolve(__dirname, 'dist'),
+    library: 'SnapAPI',
   },
   module: {
     rules: [
