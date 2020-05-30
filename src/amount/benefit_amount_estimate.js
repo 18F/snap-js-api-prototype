@@ -38,8 +38,16 @@ export class BenefitAmountEstimate {
     }
 
     calculate_without_emergency_allotment() {
+        const max_allotment = new FetchMaxAllotment({
+            'state_or_territory': this.state_or_territory,
+            'household_size': this.household_size,
+        }).calculate();
+
+        const thirty_percent_net_income = Math.round(this.net_income * 0.3);
+        const estimated_benefit = max_allotment - thirty_percent_net_income;
+
         return {
-            'result': 194
+            'result': estimated_benefit
         };
     }
 }
