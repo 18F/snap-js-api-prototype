@@ -21,7 +21,8 @@
     "build": "npx webpack --config webpack.config.js",
     "flow": "flow",
     "lint": "npx eslint src/",
-    "lint-fix": "npx eslint --fix src/"
+    "lint-fix": "npx eslint --fix src/",
+    "check-all": "npm run test && npm run flow && npm run lint"
   },
   "author": "",
   "license": "ISC"
