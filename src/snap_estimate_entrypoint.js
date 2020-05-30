@@ -59,9 +59,8 @@ class SnapEstimateEntrypoint {
         this.resources = inputs.resources;
         this.use_emergency_allotment = inputs.use_emergency_allotment;
 
-        this.state_options = STATE_OPTIONS[this.state_or_territory];
-        const state_options = this.state_options;
-        const uses_bbce = state_options['uses_bbce'];
+        const state_options = STATE_OPTIONS[this.state_or_territory][2020];
+        const uses_bbce = state_options.uses_bbce;
 
         this.gross_income_limit_factor = (uses_bbce)
             ? state_options['gross_income_limit_factor']
