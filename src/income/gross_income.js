@@ -7,6 +7,9 @@ export class GrossIncome {
     }
 
     calculate() {
-        return this.monthly_job_income + this.monthly_non_job_income;
+        return {
+            'result': this.monthly_job_income + this.monthly_non_job_income,
+            'explanation': '',
+        };
     }
 }

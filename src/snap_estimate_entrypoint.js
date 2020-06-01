@@ -158,13 +158,13 @@ class SnapEstimateEntrypoint {
         return new GrossIncome({
             'monthly_job_income': this.monthly_job_income,
             'monthly_non_job_income': this.monthly_non_job_income,
-        }).calculate();
+        }).calculate()['result'];
     }
 
     calculate_net_income() {
         return new NetIncome({
             'gross_income': this.gross_income
-        }).calculate();
+        }).calculate()['result'];
     }
 }
 
