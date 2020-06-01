@@ -1,10 +1,12 @@
 import { StandardDeduction } from '../deductions/standard_deduction.js';
+import { EarnedIncomeDeduction } from '../deductions/earned_income_deduction.js';
 
 export class NetIncome {
     constructor(inputs) {
         this.gross_income = inputs.gross_income;
         this.state_or_territory = inputs.state_or_territory;
         this.household_size = inputs.household_size;
+        this.monthly_job_income = inputs.monthly_job_income;
     }
 
     calculate() {
@@ -26,8 +28,16 @@ export class NetIncome {
             'household_size': this.household_size,
         }).calculate().result;
 
-        const result = (this.gross_income - standard_deduction > 0)
-            ? this.gross_income - standard_deduction
+        const earned_income_deduction = new EarnedIncomeDeduction({
+            'monthly_job_income': this.monthly_job_income
+        }).calculate().result;
+
+        const income_minus_deductions = (
+            this.gross_income - earned_income_deduction - standard_deduction
+        );
+
+        const result = (income_minus_deductions > 0)
+            ? income_minus_deductions
             : 0;
 
         return {

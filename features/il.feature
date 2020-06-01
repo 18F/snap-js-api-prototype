@@ -79,9 +79,9 @@ Feature: Illinois scenarios, no EA waiver
 
   # EARNED INCOME DEDUCTION #
 
-  # Scenario:
-  #   Given a 3-person household
-  #   And the household has earned income of $1000 monthly
-  #   When we run the benefit estimator...
-  #     Then we find the family is likely eligible
-  #     And we find the estimated benefit is $317 per month
+  Scenario:
+    Given a 3-person household
+    And the household has earned income of $1000 monthly
+    When we run the benefit estimator...
+      Then we find the family is likely eligible
+      And we find the estimated benefit is $317 per month

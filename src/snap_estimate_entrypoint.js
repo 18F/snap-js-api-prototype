@@ -166,6 +166,7 @@ class SnapEstimateEntrypoint {
             'gross_income': this.gross_income,
             'state_or_territory': this.state_or_territory,
             'household_size': this.household_size,
+            'monthly_job_income': this.monthly_job_income,
         }).calculate()['result'];
     }
 }
