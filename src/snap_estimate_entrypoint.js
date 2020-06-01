@@ -2,6 +2,9 @@
 
 import { STATE_OPTIONS } from './program_data/state_options.js';
 
+import { NetIncome } from './income/net_income.js';
+import { GrossIncome } from './income/gross_income.js';
+
 import { GrossIncomeTest } from './tests/gross_income_test.js';
 import { AssetTest } from './tests/asset_test.js';
 
@@ -45,6 +48,10 @@ class SnapEstimateEntrypoint {
     child_support_payments_treatment: string;
     net_monthly_income_limit: number;
 
+    // Calculated
+    gross_income: number;
+    net_income: number;
+
     // Outputs
     estimated_benefit: number;
     estimated_eligibility: boolean;
@@ -87,6 +94,13 @@ class SnapEstimateEntrypoint {
     }
 
     calculate() {
+        // First, calculate gross income
+        this.gross_income = this.calculate_gross_income();
+
+        // Then, net income
+        this.net_income = this.calculate_net_income();
+
+        // Set up and run eligibility tests
         const eligibility_tests = this.initialize_eligibility_tests();
 
         const eligibility_calculations = eligibility_tests.map((eligibility_test) => {
@@ -99,11 +113,12 @@ class SnapEstimateEntrypoint {
 
         this.estimated_eligibility = !(eligibility_results.includes(false));
 
+        // Calculate estimated benefit amount
         const benefit_amount_estimate = new BenefitAmountEstimate({
             'state_or_territory': this.state_or_territory,
             'household_size': this.household_size,
             'is_eligible': this.estimated_eligibility,
-            'net_income': this.net_income(),
+            'net_income': this.net_income,
             'use_emergency_allotment': false,
         });
 
@@ -124,7 +139,7 @@ class SnapEstimateEntrypoint {
                 'household_size': this.household_size,
                 'household_includes_elderly_or_disabled': this.household_includes_elderly_or_disabled,
                 'resources': this.resources,
-                'gross_income': this.gross_income(),
+                'gross_income': this.gross_income,
                 'net_monthly_income_limit': this.net_monthly_income_limit,
                 'gross_income_limit_factor': this.gross_income_limit_factor,
             }),
@@ -139,12 +154,17 @@ class SnapEstimateEntrypoint {
         ];
     }
 
-    gross_income() {
-        return this.monthly_job_income + this.monthly_non_job_income;
+    calculate_gross_income() {
+        return new GrossIncome({
+            'monthly_job_income': this.monthly_job_income,
+            'monthly_non_job_income': this.monthly_non_job_income,
+        }).calculate();
     }
 
-    net_income() {
-        return this.gross_income(); // stub
+    calculate_net_income() {
+        return new NetIncome({
+            'gross_income': this.gross_income
+        }).calculate();
     }
 }
 
