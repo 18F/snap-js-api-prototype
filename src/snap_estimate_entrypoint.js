@@ -163,7 +163,9 @@ class SnapEstimateEntrypoint {
 
     calculate_net_income() {
         return new NetIncome({
-            'gross_income': this.gross_income
+            'gross_income': this.gross_income,
+            'state_or_territory': this.state_or_territory,
+            'household_size': this.household_size,
         }).calculate()['result'];
     }
 }

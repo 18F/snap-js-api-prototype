@@ -1,7 +1,10 @@
-// This is a stub for now.
+import { StandardDeduction } from '../deductions/standard_deduction.js';
+
 export class NetIncome {
     constructor(inputs) {
         this.gross_income = inputs.gross_income;
+        this.state_or_territory = inputs.state_or_territory;
+        this.household_size = inputs.household_size;
     }
 
     calculate() {
@@ -17,12 +20,18 @@ export class NetIncome {
         );
         explanation.push(income_explanation);
 
-        // Add up deductions before applying excess shelter deduction:
-        // const deductions_before_excess_shelter = [
-        // ];
+        // Add up deductions
+        const standard_deduction = new StandardDeduction({
+            'state_or_territory': this.state_or_territory,
+            'household_size': this.household_size,
+        }).calculate().result;
+
+        const result = (this.gross_income - standard_deduction > 0)
+            ? this.gross_income - standard_deduction
+            : 0;
 
         return {
-            'result': this.gross_income,
+            'result': result,
             'explanation': explanation,
         };
     }
