@@ -63,10 +63,18 @@ Feature: Illinois scenarios, no EA waiver
 
   # MINIMUM ALLOTMENT #
 
-  # Scenario: Minimum allotment
-  #   Given a 1-person household
-  #   And the household does not include an elderly or disabled member
-  #   And the household has other income of $1040 monthly
-  #   When we run the benefit estimator...
-  #     Then we find the family is likely eligible
-  #     And we find the estimated benefit is $16 per month
+  Scenario: Minimum allotment
+    Given a 1-person household
+    And the household does not include an elderly or disabled member
+    And the household has other income of $1040 monthly
+    When we run the benefit estimator...
+      Then we find the family is likely eligible
+      And we find the estimated benefit is $16 per month
+
+  Scenario: Minimum allotment does not apply to larger household
+    Given a 4-person household
+    And the household does not include an elderly or disabled member
+    And the household has other income of $2323 monthly
+    When we run the benefit estimator...
+      Then we find the family is likely eligible
+      And we find the estimated benefit is $0 per month

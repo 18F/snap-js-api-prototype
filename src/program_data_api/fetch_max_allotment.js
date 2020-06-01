@@ -11,9 +11,9 @@ export class FetchMaxAllotment {
 
     state_lookup_key() {
         const NON_DEFAULT_STATES_TERRITORIES = [
-            'AK_URBAN',
-            'AK_RURAL_1',
-            'AK_RURAL_2',
+            'AK_URBAN', // TODO (ARS): Handle AK regions.
+            'AK_RURAL_1', // TODO (ARS): Handle AK regions.
+            'AK_RURAL_2', // TODO (ARS): Handle AK regions.
             'HI',
             'GUAM',
             'VIRGIN_ISLANDS',
