@@ -59,6 +59,15 @@ Feature: Illinois scenarios, no EA waiver
     When we run the benefit estimator...
       Then we find the family is likely ineligible
 
+  Scenario: Household passes net income test but not gross income test
+    Given a 3-person household
+    And the household has earned income of $1000 monthly
+    And the household has other income of $2000 monthly
+    And the household has dependent care costs of $1000 monthly
+    When we run the benefit estimator...
+      Then we find the family is likely ineligible
+      And we find the estimated benefit is $0 per month
+
 
   # MINIMUM ALLOTMENT #
 
