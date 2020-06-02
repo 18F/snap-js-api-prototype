@@ -9,6 +9,7 @@ export class NetIncome {
         this.household_size = inputs.household_size;
         this.monthly_job_income = inputs.monthly_job_income;
         this.dependent_care_costs = inputs.dependent_care_costs;
+        this.medical_expenses_for_elderly_or_disabled = inputs.medical_expenses_for_elderly_or_disabled;
     }
 
     calculate() {

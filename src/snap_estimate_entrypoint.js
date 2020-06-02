@@ -24,6 +24,7 @@ interface SnapEntrypointInputs {
     household_includes_elderly_or_disabled: boolean;
     resources: number;
     dependent_care_costs?: ?number;
+    medical_expenses_for_elderly_or_disabled?: ?number;
 
     use_emergency_allotment: string;
 }
@@ -40,6 +41,7 @@ class SnapEstimateEntrypoint {
     household_includes_elderly_or_disabled: boolean;
     resources: number;
     dependent_care_costs: ?number;
+    medical_expenses_for_elderly_or_disabled: ?number;
     use_emergency_allotment: string;
 
     // State Options
@@ -172,6 +174,7 @@ class SnapEstimateEntrypoint {
             'household_size': this.household_size,
             'monthly_job_income': this.monthly_job_income,
             'dependent_care_costs': this.dependent_care_costs,
+            'medical_expenses_for_elderly_or_disabled': this.medical_expenses_for_elderly_or_disabled,
         }).calculate()['result'];
     }
 }
