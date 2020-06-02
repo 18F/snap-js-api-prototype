@@ -38,6 +38,10 @@ Given('the household has dependent care costs of ${int} monthly', function (depe
   this.dependent_care_costs = dependent_care_costs;
 });
 
+Given('the household has court-ordered child support payments of ${int} monthly', function (court_ordered_child_support_payments) {
+  this.court_ordered_child_support_payments = court_ordered_child_support_payments;
+});
+
 Given('the household has medical expenses for elderly or disabled members of ${int} monthly', function (medical_expenses_for_elderly_or_disabled) {
   this.medical_expenses_for_elderly_or_disabled = medical_expenses_for_elderly_or_disabled;
 });
@@ -52,6 +56,7 @@ When('we run the benefit estimator...', function () {
     'resources': this.assets,
     'dependent_care_costs': this.dependent_care_costs || 0,
     'medical_expenses_for_elderly_or_disabled': this.medical_expenses_for_elderly_or_disabled || 0,
+    'court_ordered_child_support_payments': this.court_ordered_child_support_payments || 0,
     'use_emergency_allotment': this.emergency_allotment,
   });
 

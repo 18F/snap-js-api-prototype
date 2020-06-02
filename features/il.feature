@@ -187,3 +187,26 @@ Feature: Illinois scenarios, no EA waiver
     When we run the benefit estimator...
       Then we find the family is likely eligible
       And we find the estimated benefit is $341 per month
+
+
+  # CHILD SUPPORT PAYMENTS EXCLUSION #
+
+  Scenario: Child support payments exclusion pushes household into eligibility
+    Given a 3-person household
+    And the household has earned income of $1000 monthly
+    And the household has other income of $2000 monthly
+    And the household has dependent care costs of $1000 monthly
+    And the household has court-ordered child support payments of $100 monthly
+    When we run the benefit estimator...
+      Then we find the family is likely eligible
+      And we find the estimated benefit is $47 per month
+
+  Scenario: More child support payments increase estimated benefit
+    Given a 3-person household
+    And the household has earned income of $1000 monthly
+    And the household has other income of $2000 monthly
+    And the household has dependent care costs of $1000 monthly
+    And the household has court-ordered child support payments of $400 monthly
+    When we run the benefit estimator...
+      Then we find the family is likely eligible
+      And we find the estimated benefit is $137 per month
