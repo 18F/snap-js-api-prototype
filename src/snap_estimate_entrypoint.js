@@ -42,6 +42,7 @@ class SnapEstimateEntrypoint {
     resources: number;
     dependent_care_costs: ?number;
     medical_expenses_for_elderly_or_disabled: ?number;
+    court_ordered_child_support_payments: ?number;
     use_emergency_allotment: string;
 
     // State Options
@@ -54,6 +55,7 @@ class SnapEstimateEntrypoint {
     net_monthly_income_limit: number;
     standard_medical_deduction: boolean;
     standard_medical_deduction_amount: number;
+    child_support_payments_treatment: string;
 
     // Calculated
     gross_income: number;
@@ -72,6 +74,7 @@ class SnapEstimateEntrypoint {
         this.household_includes_elderly_or_disabled = inputs.household_includes_elderly_or_disabled;
         this.dependent_care_costs = inputs.dependent_care_costs;
         this.medical_expenses_for_elderly_or_disabled = inputs.medical_expenses_for_elderly_or_disabled;
+        this.court_ordered_child_support_payments = inputs.court_ordered_child_support_payments;
         this.resources = inputs.resources;
         this.use_emergency_allotment = inputs.use_emergency_allotment;
 
@@ -98,6 +101,7 @@ class SnapEstimateEntrypoint {
 
         this.standard_medical_deduction = state_options['standard_medical_deduction'];
         this.standard_medical_deduction_amount = state_options['standard_medical_deduction_amount'];
+        this.child_support_payments_treatment = state_options['child_support_payments_treatment'];
 
         this.net_monthly_income_limit = new FetchIncomeLimit({
             'state_or_territory': this.state_or_territory,
@@ -170,6 +174,8 @@ class SnapEstimateEntrypoint {
         return new GrossIncome({
             'monthly_job_income': this.monthly_job_income,
             'monthly_non_job_income': this.monthly_non_job_income,
+            'court_ordered_child_support_payments': this.court_ordered_child_support_payments,
+            'child_support_payments_treatment': this.child_support_payments_treatment,
         }).calculate()['result'];
     }
 
