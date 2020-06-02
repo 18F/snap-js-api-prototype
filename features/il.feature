@@ -85,3 +85,24 @@ Feature: Illinois scenarios, no EA waiver
     When we run the benefit estimator...
       Then we find the family is likely eligible
       And we find the estimated benefit is $317 per month
+
+  Scenario: Both earned income and other income
+    Given a 3-person household
+    And the household has earned income of $500 monthly
+    And the household has other income of $500 monthly
+    When we run the benefit estimator...
+      Then we find the family is likely eligible
+      And we find the estimated benefit is $287 per month
+
+
+  # DEPENDENT CARE DEDUCTION #
+
+  Scenario: Dependent care deduction
+    Given a 3-person household
+    And the household has earned income of $500 monthly
+    And the household has other income of $500 monthly
+    And the household has dependent care costs of $100 monthly
+    When we run the benefit estimator...
+      Then we find the family is likely eligible
+      And we find the estimated benefit is $317 per month
+
