@@ -44,11 +44,11 @@ Given('the household has medical expenses for elderly or disabled members of ${i
 
 When('we run the benefit estimator...', function () {
   const snap_estimator = new SnapEstimateEntrypoint({
+    'household_includes_elderly_or_disabled': this.household_includes_elderly_or_disabled,
     'state_or_territory': this.state_or_territory,
     'monthly_job_income': this.monthly_job_income,
     'monthly_non_job_income': this.monthly_non_job_income,
     'household_size': this.household_size,
-    'household_includes_elderly_or_disabled': this.household_includes_elderly_or_disabled,
     'resources': this.assets,
     'dependent_care_costs': this.dependent_care_costs || 0,
     'medical_expenses_for_elderly_or_disabled': this.medical_expenses_for_elderly_or_disabled || 0,

@@ -52,6 +52,8 @@ class SnapEstimateEntrypoint {
     resource_limit_non_elderly_or_disabled: number;
     child_support_payments_treatment: string;
     net_monthly_income_limit: number;
+    standard_medical_deduction: boolean;
+    standard_medical_deduction_amount: number;
 
     // Calculated
     gross_income: number;
@@ -69,6 +71,7 @@ class SnapEstimateEntrypoint {
         this.household_size = inputs.household_size;
         this.household_includes_elderly_or_disabled = inputs.household_includes_elderly_or_disabled;
         this.dependent_care_costs = inputs.dependent_care_costs;
+        this.medical_expenses_for_elderly_or_disabled = inputs.medical_expenses_for_elderly_or_disabled;
         this.resources = inputs.resources;
         this.use_emergency_allotment = inputs.use_emergency_allotment;
 
@@ -92,6 +95,9 @@ class SnapEstimateEntrypoint {
             : DEFAULT_RESOURCE_LIMIT_NON_ELDERLY_OR_DISABLED;
 
         this.child_support_payments_treatment = state_options['child_support_payments_treatment'];
+
+        this.standard_medical_deduction = state_options['standard_medical_deduction'];
+        this.standard_medical_deduction_amount = state_options['standard_medical_deduction_amount'];
 
         this.net_monthly_income_limit = new FetchIncomeLimit({
             'state_or_territory': this.state_or_territory,
@@ -169,12 +175,15 @@ class SnapEstimateEntrypoint {
 
     calculate_net_income() {
         return new NetIncome({
+            'household_includes_elderly_or_disabled': this.household_includes_elderly_or_disabled,
             'gross_income': this.gross_income,
             'state_or_territory': this.state_or_territory,
             'household_size': this.household_size,
             'monthly_job_income': this.monthly_job_income,
             'dependent_care_costs': this.dependent_care_costs,
             'medical_expenses_for_elderly_or_disabled': this.medical_expenses_for_elderly_or_disabled,
+            'standard_medical_deduction': this.standard_medical_deduction,
+            'standard_medical_deduction_amount': this.standard_medical_deduction_amount,
         }).calculate()['result'];
     }
 }

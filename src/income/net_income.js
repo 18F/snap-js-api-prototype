@@ -1,15 +1,19 @@
 import { StandardDeduction } from '../deductions/standard_deduction.js';
 import { EarnedIncomeDeduction } from '../deductions/earned_income_deduction.js';
 import { DependentCareDeduction } from '../deductions/dependent_care_deduction.js';
+import { MedicalExpensesDeduction } from '../deductions/medical_expenses_deduction.js';
 
 export class NetIncome {
     constructor(inputs) {
+        this.household_includes_elderly_or_disabled = inputs.household_includes_elderly_or_disabled;
         this.gross_income = inputs.gross_income;
         this.state_or_territory = inputs.state_or_territory;
         this.household_size = inputs.household_size;
         this.monthly_job_income = inputs.monthly_job_income;
         this.dependent_care_costs = inputs.dependent_care_costs;
         this.medical_expenses_for_elderly_or_disabled = inputs.medical_expenses_for_elderly_or_disabled;
+        this.standard_medical_deduction = inputs.standard_medical_deduction;
+        this.standard_medical_deduction_amount = inputs.standard_medical_deduction_amount;
     }
 
     calculate() {
@@ -39,9 +43,25 @@ export class NetIncome {
             'dependent_care_costs': this.dependent_care_costs
         }).calculate().result;
 
-        const income_minus_deductions = (
-            this.gross_income - earned_income_deduction - standard_deduction - dependent_care_deduction
-        );
+        const medical_expenses_deduction = new MedicalExpensesDeduction({
+            'household_includes_elderly_or_disabled': this.household_includes_elderly_or_disabled,
+            'medical_expenses_for_elderly_or_disabled': this.medical_expenses_for_elderly_or_disabled,
+            'standard_medical_deduction': this.standard_medical_deduction,
+            'standard_medical_deduction_amount': this.standard_medical_deduction_amount,
+        }).calculate().result;
+
+        const deduction_amounts = [
+            earned_income_deduction,
+            standard_deduction,
+            dependent_care_deduction,
+            medical_expenses_deduction,
+        ];
+
+        const total_deductions = deduction_amounts.reduce(function(accumulator, current_value) {
+            return accumulator + current_value;
+        }, 0);
+
+        const income_minus_deductions = this.gross_income - total_deductions;
 
         const result = (income_minus_deductions > 0)
             ? income_minus_deductions
