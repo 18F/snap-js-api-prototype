@@ -46,6 +46,41 @@ Given('the household has medical expenses for elderly or disabled members of ${i
   this.medical_expenses_for_elderly_or_disabled = medical_expenses_for_elderly_or_disabled;
 });
 
+Given('the household has rent or mortgage costs of ${int} monthly', function (rent_or_mortgage) {
+  this.rent_or_mortgage = rent_or_mortgage;
+});
+
+Given('the household has homeowners insurance and taxes costs of ${int} monthly', function (homeowners_insurance_and_taxes) {
+  this.homeowners_insurance_and_taxes = homeowners_insurance_and_taxes;
+});
+
+Given('the household pays for AC or heat, or otherwise qualifies for AC-heat utility allowance', function () {
+  this.utility_allowance = 'HEATING_AND_COOLING';
+});
+
+Given('the household pays for water and trash collection, or otherwise qualifies for limited utility allowance', function () {
+    this.utility_allowance = 'BASIC_LIMITED_ALLOWANCE';
+});
+
+Given('the household pays for a single utility besides AC, heat, and phone', function () {
+    this.utility_allowance = 'SINGLE_UTILITY_ALLOWANCE';
+});
+
+Given('the household pays phone bills only', function () {
+    this.utility_allowance = 'PHONE';
+});
+
+Given('the household is not billed separately for any utilities', function () {
+    this.utility_allowance = 'NONE';
+});
+
+Given('the household has utility costs of ${int} monthly', function (utility_costs) {
+  this.utility_costs = utility_costs;
+});
+
+
+
+
 When('we run the benefit estimator...', function () {
   const snap_estimator = new SnapEstimateEntrypoint({
     'household_includes_elderly_or_disabled': this.household_includes_elderly_or_disabled,

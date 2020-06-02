@@ -210,3 +210,122 @@ Feature: Illinois scenarios, no EA waiver
     When we run the benefit estimator...
       Then we find the family is likely eligible
       And we find the estimated benefit is $137 per month
+
+
+  # EXCESS SHELTER DEDUCTION #
+
+    Scenario: Household where shelter costs do not exceed half of adjusted income
+    Given a 3-person household
+    And the household has earned income of $500 monthly
+    And the household has other income of $500 monthly
+    And the household has rent or mortgage costs of $300 monthly
+    When we run the benefit estimator...
+      Then we find the family is likely eligible
+      And we find the estimated benefit is $287 per month
+
+  Scenario: Household where shelter costs exceed half of adjusted income by ~$100
+    Given a 3-person household
+    And the household has earned income of $500 monthly
+    And the household has other income of $500 monthly
+    And the household has rent or mortgage costs of $467 monthly
+    When we run the benefit estimator...
+      Then we find the family is likely eligible
+      And we find the estimated benefit is $316 per month
+
+  Scenario: Household where shelter costs exceed half of adjusted income by ~$100 and the household includes an elderly or disabled household member
+    Given a 3-person household
+    And the household does include an elderly or disabled member
+    And the household has earned income of $500 monthly
+    And the household has other income of $500 monthly
+    And the household has rent or mortgage costs of $467 monthly
+    When we run the benefit estimator...
+      Then we find the family is likely eligible
+      And we find the estimated benefit is $316 per month
+
+  Scenario: Household where shelter costs exceed half of adjusted income by ~$200
+    Given a 3-person household
+    And the household has earned income of $500 monthly
+    And the household has other income of $500 monthly
+    And the household has rent or mortgage costs of $567 monthly
+    When we run the benefit estimator...
+      Then we find the family is likely eligible
+      And we find the estimated benefit is $346 per month
+
+  Scenario: Household with excess shelter costs that exceed the IL 2020 max ($569) that includes an elderly or disabled household member
+    Given a 3-person household
+    And the household does include an elderly or disabled member
+    And the household has earned income of $500 monthly
+    And the household has other income of $500 monthly
+    And the household has rent or mortgage costs of $1067 monthly
+    When we run the benefit estimator...
+      Then we find the family is likely eligible
+      And we find the estimated benefit is $496 per month
+
+  Scenario: Household with excess shelter costs that exceed the IL 2020 max ($569) that does not include an elderly or disabled household member
+    Given a 3-person household
+    And the household has earned income of $500 monthly
+    And the household has other income of $500 monthly
+    And the household has rent or mortgage costs of $1067 monthly
+    When we run the benefit estimator...
+      Then we find the family is likely eligible
+      And we find the estimated benefit is $458 per month
+
+  Scenario: Household would have a low benefit amount without taking utilities into account
+    Given a 3-person household
+    And the household does include an elderly or disabled member
+    And the household has earned income of $3000 monthly
+    And the household has rent or mortgage costs of $1800 monthly
+    When we run the benefit estimator...
+      Then we find the family is likely eligible
+      And we find the estimated benefit is $41 per month
+
+  Scenario: Household pays for AC or heat separately
+    Given a 3-person household
+    And the household does include an elderly or disabled member
+    And the household has earned income of $3000 monthly
+    And the household has rent or mortgage costs of $1800 monthly
+    And the household pays for AC or heat, or otherwise qualifies for AC-heat utility allowance
+    When we run the benefit estimator...
+      Then we find the family is likely eligible
+      And we find the estimated benefit is $184 per month
+
+  Scenario: Household pays for two utilities besides AC and heat
+    Given a 3-person household
+    And the household does include an elderly or disabled member
+    And the household has earned income of $3000 monthly
+    And the household has rent or mortgage costs of $1800 monthly
+    And the household pays for water and trash collection, or otherwise qualifies for limited utility allowance
+    When we run the benefit estimator...
+      Then we find the family is likely eligible
+      And we find the estimated benefit is $139 per month
+
+  Scenario: Household pays a single utility besides AC, heat, and phone
+    Given a 3-person household
+    And the household does include an elderly or disabled member
+    And the household has earned income of $3000 monthly
+    And the household has other income of $0 monthly
+    And the household has rent or mortgage costs of $1800 monthly
+    And the household pays for a single utility besides AC, heat, and phone
+    When we run the benefit estimator...
+      Then we find the family is likely eligible
+      And we find the estimated benefit is $63 per month
+
+  Scenario: Household pays for telephone only
+    Given a 3-person household
+    And the household does include an elderly or disabled member
+    And the household has earned income of $3000 monthly
+    And the household has rent or mortgage costs of $1800 monthly
+    And the household pays phone bills only
+    When we run the benefit estimator...
+      Then we find the family is likely eligible
+      And we find the estimated benefit is $50 per month
+
+  Scenario: Household not billed separately for any utilities (client explicitly tells API as opposed to leaving field blank)
+    Given a 3-person household
+    And the household does include an elderly or disabled member
+    And the household has earned income of $3000 monthly
+    And the household has rent or mortgage costs of $1800 monthly
+    And the household is not billed separately for any utilities
+    When we run the benefit estimator...
+      Then we find the family is likely eligible
+      And we find the estimated benefit is $41 per month
