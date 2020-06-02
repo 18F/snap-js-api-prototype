@@ -1,5 +1,6 @@
 import { StandardDeduction } from '../deductions/standard_deduction.js';
 import { EarnedIncomeDeduction } from '../deductions/earned_income_deduction.js';
+import { DependentCareDeduction } from '../deductions/dependent_care_deduction.js';
 
 export class NetIncome {
     constructor(inputs) {
@@ -7,6 +8,7 @@ export class NetIncome {
         this.state_or_territory = inputs.state_or_territory;
         this.household_size = inputs.household_size;
         this.monthly_job_income = inputs.monthly_job_income;
+        this.dependent_care_costs = inputs.dependent_care_costs;
     }
 
     calculate() {
@@ -32,8 +34,12 @@ export class NetIncome {
             'monthly_job_income': this.monthly_job_income
         }).calculate().result;
 
+        const dependent_care_deduction = new DependentCareDeduction({
+            'dependent_care_costs': this.dependent_care_costs
+        }).calculate().result;
+
         const income_minus_deductions = (
-            this.gross_income - earned_income_deduction - standard_deduction
+            this.gross_income - earned_income_deduction - standard_deduction - dependent_care_deduction
         );
 
         const result = (income_minus_deductions > 0)

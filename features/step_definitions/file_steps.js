@@ -46,6 +46,7 @@ When('we run the benefit estimator...', function () {
     'household_size': this.household_size,
     'household_includes_elderly_or_disabled': this.household_includes_elderly_or_disabled,
     'resources': this.assets,
+    'dependent_care_costs': this.dependent_care_costs || 0,
     'use_emergency_allotment': this.emergency_allotment,
   });
 
