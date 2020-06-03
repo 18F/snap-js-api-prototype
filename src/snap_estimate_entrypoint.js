@@ -117,6 +117,7 @@ class SnapEstimateEntrypoint {
         this.child_support_payments_treatment = state_options['child_support_payments_treatment'];
         this.mandatory_standard_utility_allowances = state_options['mandatory_standard_utility_allowances'];
         this.standard_utility_allowances = state_options['standard_utility_allowances'];
+        this.state_website = state_options['website'];
 
         this.net_monthly_income_limit = new FetchIncomeLimit({
             'state_or_territory': this.state_or_territory,
@@ -160,8 +161,9 @@ class SnapEstimateEntrypoint {
         return {
             'estimated_benefit': this.estimated_benefit,
             'estimated_eligibility': this.estimated_eligibility,
-            'status': 'OK'
-            'eligibility_factors': []
+            'status': 'OK',
+            'eligibility_factors': [],
+            'state_website': this.state_website,
         };
     }
 
