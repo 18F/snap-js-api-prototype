@@ -30,7 +30,7 @@ export class GrossIncome {
             'In this state, court-ordered child support payments are ' +
             'counted as a gross income exclusion. The gross income is ' +
             'adjusted to exclude monthly court-ordered child support:'
-        )
+        );
         explanation.push(child_support_payments_explanation);
 
         const monthly_income_minus_child_support = (
@@ -49,7 +49,7 @@ export class GrossIncome {
             'result': monthly_income_minus_child_support,
             'explanation': explanation,
             'sort_order': 0
-        }
+        };
     }
 
     calculate_without_excluding_child_support() {
@@ -58,7 +58,7 @@ export class GrossIncome {
         const gross_income_intro = (
             'We find gross income by adding up monthly income from both ' +
             'job and non-job sources.'
-        )
+        );
         explanation.push(gross_income_intro);
 
         const monthly_income = this.monthly_job_income + this.monthly_non_job_income;
@@ -75,6 +75,6 @@ export class GrossIncome {
             'result': monthly_income,
             'explanation': explanation,
             'sort_order': 0
-        }
+        };
     }
 }
