@@ -25,7 +25,11 @@ interface SnapEntrypointInputs {
     resources: number;
     dependent_care_costs?: ?number;
     medical_expenses_for_elderly_or_disabled?: ?number;
-
+    rent_or_mortgage?: ?number;
+    homeowners_insurance_and_taxes?: ?number;
+    utility_allowance?: ?string;
+    utility_costs?: ?number;
+    court_ordered_child_support_payments?: ?number;
     use_emergency_allotment: string;
 }
 */
@@ -44,6 +48,10 @@ class SnapEstimateEntrypoint {
     medical_expenses_for_elderly_or_disabled: ?number;
     court_ordered_child_support_payments: ?number;
     use_emergency_allotment: string;
+    rent_or_mortgage: ?number;
+    homeowners_insurance_and_taxes: ?number;
+    utility_allowance: ?string;
+    utility_costs: ?number;
 
     // State Options
     state_options: Object;
@@ -56,6 +64,8 @@ class SnapEstimateEntrypoint {
     standard_medical_deduction: boolean;
     standard_medical_deduction_amount: number;
     child_support_payments_treatment: string;
+    standard_utility_allowances: Object;
+    mandatory_standard_utility_allowances: boolean;
 
     // Calculated
     gross_income: number;
@@ -77,6 +87,10 @@ class SnapEstimateEntrypoint {
         this.court_ordered_child_support_payments = inputs.court_ordered_child_support_payments;
         this.resources = inputs.resources;
         this.use_emergency_allotment = inputs.use_emergency_allotment;
+        this.rent_or_mortgage = inputs.rent_or_mortgage;
+        this.homeowners_insurance_and_taxes = inputs.homeowners_insurance_and_taxes;
+        this.utility_costs = inputs.utility_costs;
+        this.utility_allowance = inputs.utility_allowance;
 
         const state_options = STATE_OPTIONS[this.state_or_territory][2020];
         const uses_bbce = state_options.uses_bbce;
@@ -98,10 +112,11 @@ class SnapEstimateEntrypoint {
             : DEFAULT_RESOURCE_LIMIT_NON_ELDERLY_OR_DISABLED;
 
         this.child_support_payments_treatment = state_options['child_support_payments_treatment'];
-
         this.standard_medical_deduction = state_options['standard_medical_deduction'];
         this.standard_medical_deduction_amount = state_options['standard_medical_deduction_amount'];
         this.child_support_payments_treatment = state_options['child_support_payments_treatment'];
+        this.mandatory_standard_utility_allowances = state_options['mandatory_standard_utility_allowances'];
+        this.standard_utility_allowances = state_options['standard_utility_allowances'];
 
         this.net_monthly_income_limit = new FetchIncomeLimit({
             'state_or_territory': this.state_or_territory,
@@ -190,6 +205,12 @@ class SnapEstimateEntrypoint {
             'medical_expenses_for_elderly_or_disabled': this.medical_expenses_for_elderly_or_disabled,
             'standard_medical_deduction': this.standard_medical_deduction,
             'standard_medical_deduction_amount': this.standard_medical_deduction_amount,
+            'rent_or_mortgage': this.rent_or_mortgage,
+            'homeowners_insurance_and_taxes': this.homeowners_insurance_and_taxes,
+            'utility_costs': this.utility_costs,
+            'utility_allowance': this.utility_allowance,
+            'mandatory_standard_utility_allowances': this.mandatory_standard_utility_allowances,
+            'standard_utility_allowances': this.standard_utility_allowances,
         }).calculate()['result'];
     }
 }

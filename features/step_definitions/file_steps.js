@@ -79,8 +79,6 @@ Given('the household has utility costs of ${int} monthly', function (utility_cos
 });
 
 
-
-
 When('we run the benefit estimator...', function () {
   const snap_estimator = new SnapEstimateEntrypoint({
     'household_includes_elderly_or_disabled': this.household_includes_elderly_or_disabled,
@@ -92,6 +90,9 @@ When('we run the benefit estimator...', function () {
     'dependent_care_costs': this.dependent_care_costs || 0,
     'medical_expenses_for_elderly_or_disabled': this.medical_expenses_for_elderly_or_disabled || 0,
     'court_ordered_child_support_payments': this.court_ordered_child_support_payments || 0,
+    'rent_or_mortgage': this.rent_or_mortgage || 0,
+    'homeowners_insurance_and_taxes': this.homeowners_insurance_and_taxes || 0,
+    'utility_allowance': this.utility_allowance || 'NONE',
     'use_emergency_allotment': this.emergency_allotment,
   });
 
