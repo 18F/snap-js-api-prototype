@@ -46,16 +46,16 @@ export class ParseInputs {
         const UTILITY_ALLOWANCE_INPUT = 'utility_allowance';
 
         for (const input_key of REQUIRED_NUMBER_INPUTS) {
-            return this.handle_required_integer_input(input_key);
+            this.handle_required_integer_input(input_key);
         }
         for (const input_key of REQUIRED_BOOLEAN_INPUTS) {
-            return this.handle_required_bool_input(input_key);
+            this.handle_required_bool_input(input_key);
         }
         for (const input_key of OPTIONAL_NUMBER_INPUTS) {
-            return this.handle_optional_integer_input(input_key);
+            this.handle_optional_integer_input(input_key);
         }
         for (const input_key of OPTIONAL_BOOLEAN_INPUTS) {
-            return this.handle_optional_bool_input(input_key);
+            this.handle_optional_bool_input(input_key);
         }
         this.handle_optional_bool_input(UTILITY_ALLOWANCE_INPUT);
 
@@ -91,10 +91,16 @@ export class ParseInputs {
 
         if (typeof input_value === 'string') {
             this.inputs[input_key] = (input_value === 'true');
+            return true;
         }
     }
 
     handle_optional_bool_input(input_key) {
+        // Check if the key exists in the inputs object
+        if (!(input_key in this.inputs)) {
+            return true;
+        }
+
         const input_value = this.inputs[input_key];
 
         if ([true, false, null].includes(input_value)) {
@@ -143,7 +149,7 @@ export class ParseInputs {
     handle_optional_integer_input(input_key) {
         // Check if the key exists in the inputs object
         if (!(input_key in this.inputs)) {
-            this.inputs['input_key'] = 0;
+            this.inputs[input_key] = 0;
             return true;
         }
 
