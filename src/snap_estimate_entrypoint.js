@@ -7,6 +7,7 @@ import { GrossIncome } from './income/gross_income.js';
 
 import { GrossIncomeTest } from './tests/gross_income_test.js';
 import { AssetTest } from './tests/asset_test.js';
+import { NetIncomeTest } from './tests/net_income_test.js';
 
 import { BenefitAmountEstimate } from './amount/benefit_amount_estimate.js';
 import { FetchIncomeLimit } from './program_data_api/fetch_income_limit.js';
@@ -187,6 +188,10 @@ class SnapEstimateEntrypoint {
                 'gross_income': this.gross_income,
                 'net_monthly_income_limit': this.net_monthly_income_limit,
                 'gross_income_limit_factor': this.gross_income_limit_factor,
+            }),
+            new NetIncomeTest({
+                'net_monthly_income_limit': this.net_monthly_income_limit,
+                'net_income': this.net_income,
             }),
             new AssetTest({
                 'state_or_territory': this.state_or_territory,

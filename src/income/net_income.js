@@ -95,8 +95,10 @@ export class NetIncome {
             : 0;
 
         return {
+            'name': 'Net Income',
             'result': result,
             'explanation': explanation,
+            'sort_order': 1,
         };
     }
 }
