@@ -75,6 +75,8 @@ export class BenefitAmountEstimate {
         }
 
         return {
+            'name': 'Benefit Amount',
+            'sort_order': 5,
             'result': estimated_benefit,
             'explanation': explanation,
         };
