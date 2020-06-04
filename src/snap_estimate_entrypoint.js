@@ -66,8 +66,11 @@ class SnapEstimateEntrypoint {
     child_support_payments_treatment: string;
     standard_utility_allowances: Object;
     mandatory_standard_utility_allowances: boolean;
+    state_website: string;
 
     // Calculated
+    gross_income_calculation: Object;
+    net_income_calculation: Object;
     gross_income: number;
     net_income: number;
 
@@ -127,19 +130,21 @@ class SnapEstimateEntrypoint {
 
     calculate() {
         // First, calculate gross income
-        this.gross_income = this.calculate_gross_income();
+        const gross_income_calculation = this.calculate_gross_income();
+        this.gross_income = gross_income_calculation['result'];
 
         // Then, net income
-        this.net_income = this.calculate_net_income();
+        const net_income_calculation = this.calculate_net_income();
+        this.net_income = net_income_calculation['result'];
 
         // Set up and run eligibility tests
         const eligibility_tests = this.initialize_eligibility_tests();
 
-        const eligibility_calculations = eligibility_tests.map((eligibility_test) => {
+        const eligibility_calculations/*: Array<Object> */ = eligibility_tests.map((eligibility_test) => {
             return eligibility_test.calculate();
         });
 
-        const eligibility_results = eligibility_calculations.map((calculation) => {
+        const eligibility_results/*: Array<number> */ = eligibility_calculations.map((calculation) => {
             return calculation.result;
         });
 
@@ -155,14 +160,19 @@ class SnapEstimateEntrypoint {
         });
 
         const benefit_amount_calculation = benefit_amount_estimate.calculate();
-
         this.estimated_benefit = benefit_amount_calculation.result;
 
+        const eligibility_factors/*: Array<Array> */ = [
+            gross_income_calculation,
+            net_income_calculation,
+            benefit_amount_calculation,
+        ].concat(eligibility_calculations);
+
         return {
+            'status': 'OK',
             'estimated_benefit': this.estimated_benefit,
             'estimated_eligibility': this.estimated_eligibility,
-            'status': 'OK',
-            'eligibility_factors': [],
+            'eligibility_factors': eligibility_factors,
             'state_website': this.state_website,
         };
     }
@@ -195,7 +205,7 @@ class SnapEstimateEntrypoint {
             'monthly_non_job_income': this.monthly_non_job_income,
             'court_ordered_child_support_payments': this.court_ordered_child_support_payments,
             'child_support_payments_treatment': this.child_support_payments_treatment,
-        }).calculate()['result'];
+        }).calculate();
     }
 
     calculate_net_income() {
@@ -215,7 +225,7 @@ class SnapEstimateEntrypoint {
             'utility_allowance': this.utility_allowance,
             'mandatory_standard_utility_allowances': this.mandatory_standard_utility_allowances,
             'standard_utility_allowances': this.standard_utility_allowances,
-        }).calculate()['result'];
+        }).calculate();
     }
 }
 
