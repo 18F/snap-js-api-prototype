@@ -13,7 +13,7 @@ export class ParseInputs {
     }
 
     parse() {
-        if (!inputs) {
+        if (!this.inputs) {
             this.errors.append('No input data received.');
             return;
         }
@@ -44,6 +44,22 @@ export class ParseInputs {
         ];
 
         const UTILITY_ALLOWANCE_INPUT = 'utility_allowance';
+
+        for (const input_key of REQUIRED_NUMBER_INPUTS) {
+            return this.handle_required_integer_input(input_key);
+        }
+        for (const input_key of REQUIRED_BOOLEAN_INPUTS) {
+            return this.handle_required_bool_input(input_key);
+        }
+        for (const input_key of OPTIONAL_NUMBER_INPUTS) {
+            return this.handle_optional_integer_input(input_key);
+        }
+        for (const input_key of OPTIONAL_BOOLEAN_INPUTS) {
+            return this.handle_optional_bool_input(input_key);
+        }
+        this.handle_optional_bool_input(UTILITY_ALLOWANCE_INPUT);
+
+        return this.inputs;
     }
 
     handle_required_integer_input(input_key) {
