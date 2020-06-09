@@ -24,7 +24,7 @@ export class NetIncome {
     }
 
     calculate() {
-        const explanation = [];
+        let explanation = [];
         const explanation_intro = (
             'To find out if this household is eligible for SNAP and estimate the benefit amount, we start by calculating net income. Net income is equal to total gross monthly income, minus deductions.'
         );
@@ -36,26 +36,26 @@ export class NetIncome {
         );
         explanation.push(income_explanation);
 
-        // Add up deductions
+        // Calculate deductions
         const standard_deduction = new StandardDeduction({
             'state_or_territory': this.state_or_territory,
             'household_size': this.household_size,
-        }).calculate().result;
+        }).calculate();
 
         const earned_income_deduction = new EarnedIncomeDeduction({
             'monthly_job_income': this.monthly_job_income
-        }).calculate().result;
+        }).calculate();
 
         const dependent_care_deduction = new DependentCareDeduction({
             'dependent_care_costs': this.dependent_care_costs
-        }).calculate().result;
+        }).calculate();
 
         const medical_expenses_deduction = new MedicalExpensesDeduction({
             'household_includes_elderly_or_disabled': this.household_includes_elderly_or_disabled,
             'medical_expenses_for_elderly_or_disabled': this.medical_expenses_for_elderly_or_disabled,
             'standard_medical_deduction': this.standard_medical_deduction,
             'standard_medical_deduction_amount': this.standard_medical_deduction_amount,
-        }).calculate().result;
+        }).calculate();
 
         const deductions_before_shelter = [
             earned_income_deduction,
@@ -65,9 +65,16 @@ export class NetIncome {
             // TODO (ARS): Add Child Support Payments Deduction for states that deduct.
         ];
 
-        const total_deductions_before_shelter = deductions_before_shelter.reduce(function(accumulator, current_value) {
-            return accumulator + current_value;
-        }, 0);
+        let total_deductions_before_shelter = 0;
+
+        // Add up deduction amounts and add explanations to explanation array
+        deductions_before_shelter.map((deduction) => {
+            for (const deduction_explanation_graph of deduction['explanation']) {
+                explanation.push(deduction_explanation_graph);
+            }
+
+            total_deductions_before_shelter += deduction['result'];
+        });
 
         const adjusted_income_before_excess_shelter = (
             this.gross_income - total_deductions_before_shelter

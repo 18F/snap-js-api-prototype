@@ -16,7 +16,7 @@ export class MedicalExpensesDeduction {
 
         if (!this.household_includes_elderly_or_disabled) {
             explanation.push(
-                'In this case, there are no elderly or disabled members of the household, so the deduction does not apply. '
+                'In this case, there are no elderly or disabled members of the household, so the medical expenses deduction does not apply. '
             );
 
             return {

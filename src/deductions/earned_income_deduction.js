@@ -12,7 +12,7 @@ export class EarnedIncomeDeduction {
             ),
             (''),
             (
-                `$${this.monthly_job_income} x 0.2 = $${earned_income_deduction} earned income deduction"`
+                `$${this.monthly_job_income} x 0.2 = $${earned_income_deduction} earned income deduction`
             )
         ];
 
