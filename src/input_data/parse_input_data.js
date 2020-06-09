@@ -57,7 +57,7 @@ export class ParseInputs {
         for (const input_key of OPTIONAL_BOOLEAN_INPUTS) {
             this.handle_optional_bool_input(input_key);
         }
-        this.handle_optional_bool_input(UTILITY_ALLOWANCE_INPUT);
+        this.handle_utility_allowance_input(UTILITY_ALLOWANCE_INPUT);
 
         return this.inputs;
     }

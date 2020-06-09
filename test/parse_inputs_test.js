@@ -115,5 +115,46 @@ describe('ParseInputs', () => {
             'Missing required input: household_includes_elderly_or_disabled'
         ]);
     });
+
+
+    it('should add no errors on valid utility allowance value', () => {
+        const inputs = {
+            'state_or_territory': 'IL',
+            'household_includes_elderly_or_disabled': 'false',
+            'monthly_non_job_income': '0',
+            'monthly_job_income': '0',
+            'household_size': '1',
+            'resources': '0',
+            'utility_allowance': 'HEATING_AND_COOLING',
+        };
+
+        const parser = new ParseInputs(inputs);
+        parser.parse();
+
+        assert.deepEqual(parser.errors, []);
+    });
+
+
+    it('should add an errors on invalid utility allowance value', () => {
+        const inputs = {
+            'state_or_territory': 'IL',
+            'household_includes_elderly_or_disabled': 'false',
+            'monthly_non_job_income': '0',
+            'monthly_job_income': '0',
+            'household_size': '1',
+            'resources': '0',
+            'utility_allowance': '7',
+        };
+
+        const parser = new ParseInputs(inputs);
+        parser.parse();
+
+        assert.deepEqual(parser.errors, [
+            'Unknown standard utility allowance: 7'
+        ]);
+    });
+
+
+
 });
 
