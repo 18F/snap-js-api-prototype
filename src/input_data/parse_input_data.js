@@ -104,7 +104,7 @@ export class ParseInputs {
         const input_value = this.inputs[input_key];
 
         if ([true, false, null].includes(input_value)) {
-            return true
+            return true;
         } else if (typeof input_value === 'string') {
             this.inputs[input_key] = (input_value === 'true');
         } else {

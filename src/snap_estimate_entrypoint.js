@@ -163,7 +163,7 @@ class SnapEstimateEntrypoint {
         const benefit_amount_calculation = benefit_amount_estimate.calculate();
         this.estimated_benefit = benefit_amount_calculation.result;
 
-        const eligibility_factors/*: Array<Array> */ = [
+        const eligibility_factors/*: Array<Array<string>> */ = [
             gross_income_calculation,
             net_income_calculation,
             benefit_amount_calculation,

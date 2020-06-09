@@ -9,8 +9,8 @@ export class NetIncomeTest {
 
         const explanation = [];
         const explanation_intro = (
-            "To be eligible for SNAP, a household's net income needs to be below " +
-            "the net monthly income limit."
+            'To be eligible for SNAP, a household\'s net income needs to be below ' +
+            'the net monthly income limit.'
         );
         explanation.push(explanation_intro);
 
