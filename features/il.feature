@@ -78,12 +78,16 @@ Feature: Illinois scenarios, no EA waiver
       Then we find the family is likely eligible
       And we find the estimated benefit is $16 per month
 
+  # This is a household whose income just barely passes the gross
+  # and net income tests for Illinois. The household's benefit
+  # amount is smaller than the IL minimum benefit amount, but
+  # the minimum amount does not apply because of household size.
   Scenario: Minimum allotment does not apply to larger household
     Given a 4-person household
-    And the household has other income of $2323 monthly
+    And the household has other income of $2280 monthly
     When we run the benefit estimator...
       Then we find the family is likely eligible
-      And we find the estimated benefit is $0 per month
+      And we find the estimated benefit is $13 per month
 
 
   # EARNED INCOME DEDUCTION #
