@@ -56,8 +56,7 @@ export class GrossIncome {
         const explanation = [];
 
         const gross_income_intro = (
-            'We find gross income by adding up monthly income from both ' +
-            'job and non-job sources.'
+            'We start with calculating gross income. We find the household\'s gross income by adding up monthly income from both job and non-job sources.'
         );
         explanation.push(gross_income_intro);
 

@@ -20,6 +20,7 @@ class GrossIncomeTest {
                 'name': 'Gross Income Test',
                 'result': true,
                 'explanation': [
+                    'The first test we\'ll check for SNAP eligibility is the Gross Income Test.',
                     'Households with an elderly or disabled member do not need to meet the gross income test.'
                 ],
                 'sort_order': 2,
@@ -27,7 +28,7 @@ class GrossIncomeTest {
         }
 
         let explanation = [
-            'Next, we check gross income (total income without deductions).'
+            'The first test we\'ll check for SNAP eligibility is the Gross Income Test.'
         ];
 
         const below_gross_income_limit = (

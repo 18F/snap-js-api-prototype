@@ -26,9 +26,18 @@ export class NetIncome {
     calculate() {
         let explanation = [];
         const explanation_intro = (
-            'To find out if this household is eligible for SNAP and estimate the benefit amount, we start by calculating net income. Net income is equal to total gross monthly income, minus deductions.'
+            'Net income is equal to total gross monthly income, minus deductions.'
         );
         explanation.push(explanation_intro);
+
+        if (this.gross_income === 0) {
+            return {
+                'name': 'Net Income',
+                'result': 0,
+                'explanation': ['Since the household does not have income, net income is zero.'],
+                'sort_order': 1,
+            };
+        }
 
         // Start with gross income
         const income_explanation = (
