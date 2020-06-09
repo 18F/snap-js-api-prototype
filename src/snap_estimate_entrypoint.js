@@ -1,5 +1,6 @@
 // @flow
 
+import { ParseInputs } from './input_data/parse_input_data.js';
 import { STATE_OPTIONS } from './program_data/state_options.js';
 
 import { NetIncome } from './income/net_income.js';
@@ -80,7 +81,16 @@ class SnapEstimateEntrypoint {
     estimated_eligibility: boolean;
     */
 
-    constructor(inputs /*: SnapEntrypointInputs */) {
+    constructor(raw_inputs /*: SnapEntrypointInputs */) {
+        const parser = new ParseInputs(raw_inputs);
+        const inputs_valid = parser.inputs_valid();
+
+        if (!inputs_valid) {
+            throw(`Invalid inputs: ${parser.errors}`);
+        }
+
+        const inputs = parser.inputs;
+
         this.state_or_territory = inputs.state_or_territory;
         this.monthly_job_income = inputs.monthly_job_income;
         this.monthly_non_job_income = inputs.monthly_non_job_income;

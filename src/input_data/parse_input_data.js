@@ -167,6 +167,11 @@ export class ParseInputs {
 
         const input_value = this.inputs[input_key];
 
+        if (input_value === null || input_value === '') {
+            this.inputs[input_key] = 0;
+            return true;
+        }
+
         if (typeof input_value === 'number') {
             return true;
         }
