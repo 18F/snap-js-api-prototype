@@ -91,7 +91,11 @@ describe('ParseInputs', () => {
         };
 
         const parser = new ParseInputs(inputs);
-        assert.throws(parser.parse(), 'Error thrown must have this msg');
+        parser.parse();
+
+        assert.deepEqual(parser.errors, [
+            'Missing required input: monthly_job_income'
+        ]);
     });
 });
 
