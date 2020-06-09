@@ -81,7 +81,7 @@ describe('ParseInputs', () => {
     });
 
 
-    it('should throw an error if a required integer is missing', () => {
+    it('should add an error to the errors array if a required integer is missing', () => {
         const inputs = {
             'state_or_territory': 'IL',
             'monthly_non_job_income': '0',
@@ -95,6 +95,24 @@ describe('ParseInputs', () => {
 
         assert.deepEqual(parser.errors, [
             'Missing required input: monthly_job_income'
+        ]);
+    });
+
+
+    it('should add an error to the errors array if a required boolean is missing', () => {
+        const inputs = {
+            'state_or_territory': 'IL',
+            'monthly_non_job_income': '0',
+            'monthly_job_income': '0',
+            'household_size': '1',
+            'resources': '0'
+        };
+
+        const parser = new ParseInputs(inputs);
+        parser.parse();
+
+        assert.deepEqual(parser.errors, [
+            'Missing required input: household_includes_elderly_or_disabled'
         ]);
     });
 });
