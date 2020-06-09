@@ -38,7 +38,7 @@ export class AssetTest {
 
         const below_resource_limit = this.resources <= resource_limit;
         explanation.push(
-            `Since this household has resources of ${this.resources}, it <strong>${below_resource_limit ? 'meets' : 'does not meet'}</strong> the asset test.`
+            `Since this household has resources of $${this.resources}, it <strong>$${below_resource_limit ? 'meets' : 'does not meet'}</strong> the asset test.`
         );
 
         return {

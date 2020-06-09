@@ -66,7 +66,7 @@ export class GrossIncome {
         const gross_income_math = (
             `$${this.monthly_job_income} monthly job income + ` +
             `$${this.monthly_non_job_income} monthly non-job income = ` +
-            `<strong>${monthly_income} gross income</strong>`
+            `<strong>$${monthly_income} gross income</strong>`
         );
         explanation.push(gross_income_math);
 
