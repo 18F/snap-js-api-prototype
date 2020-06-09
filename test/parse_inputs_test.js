@@ -13,9 +13,8 @@ describe('ParseInputs', () => {
         };
 
         const parser = new ParseInputs(inputs);
-        parser.parse();
 
-        assert.equal(parser.errors.length, 0);
+        assert.equal(parser.inputs_valid(), true);
         assert.equal(parser.inputs, inputs);
     });
 
@@ -30,9 +29,8 @@ describe('ParseInputs', () => {
         };
 
         const parser = new ParseInputs(inputs);
-        parser.parse();
 
-        assert.equal(parser.errors.length, 0);
+        assert.equal(parser.inputs_valid(), true);
         assert.deepEqual(parser.inputs, {
             'court_ordered_child_support_payments': 0,
             'dependent_care_costs': 0,
@@ -61,9 +59,8 @@ describe('ParseInputs', () => {
         };
 
         const parser = new ParseInputs(inputs);
-        parser.parse();
 
-        assert.equal(parser.errors.length, 0);
+        assert.equal(parser.inputs_valid(), true);
         assert.deepEqual(parser.inputs, {
             'court_ordered_child_support_payments': 0,
             'dependent_care_costs': 0,
@@ -80,7 +77,6 @@ describe('ParseInputs', () => {
         });
     });
 
-
     it('should add an error to the errors array if a required integer is missing', () => {
         const inputs = {
             'state_or_territory': 'IL',
@@ -91,13 +87,12 @@ describe('ParseInputs', () => {
         };
 
         const parser = new ParseInputs(inputs);
-        parser.parse();
 
+        assert.equal(parser.inputs_valid(), false);
         assert.deepEqual(parser.errors, [
             'Missing required input: monthly_job_income'
         ]);
     });
-
 
     it('should add an error to the errors array if a required boolean is missing', () => {
         const inputs = {
@@ -109,8 +104,8 @@ describe('ParseInputs', () => {
         };
 
         const parser = new ParseInputs(inputs);
-        parser.parse();
 
+        assert.equal(parser.inputs_valid(), false);
         assert.deepEqual(parser.errors, [
             'Missing required input: household_includes_elderly_or_disabled'
         ]);
@@ -129,9 +124,8 @@ describe('ParseInputs', () => {
         };
 
         const parser = new ParseInputs(inputs);
-        parser.parse();
 
-        assert.deepEqual(parser.errors, []);
+        assert.equal(parser.inputs_valid(), true);
     });
 
 
@@ -147,8 +141,8 @@ describe('ParseInputs', () => {
         };
 
         const parser = new ParseInputs(inputs);
-        parser.parse();
 
+        assert.equal(parser.inputs_valid(), false);
         assert.deepEqual(parser.errors, [
             'Unknown standard utility allowance: 7'
         ]);

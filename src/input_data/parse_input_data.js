@@ -9,7 +9,14 @@ export class ParseInputs {
     constructor(inputs) {
         this.inputs = inputs;
         this.errors = [];
-        this.result = null;
+
+        // Parse inputs immediately on creating object.
+        this.parse();
+    }
+
+    // To be called after `parse` is run; parse sets this.errors.
+    inputs_valid() {
+        return this.errors.length === 0;
     }
 
     parse() {
@@ -113,7 +120,19 @@ export class ParseInputs {
     }
 
     handle_utility_allowance_input(input_key) {
+        // Check if the key exists in the inputs object
+        if (!(input_key in this.inputs)) {
+            return true;
+        }
+
         const input_value = this.inputs[input_key];
+
+        // Utility allowance can be blank or '', if the household is in a state
+        // that uses raw utility costs instead of standard utility allowances.
+        if (input_value === null || input_value === '') {
+            this.inputs[input_key] = null;
+            return true;
+        }
 
         const UTILITY_ALLOWANCES = [
             'HEATING_AND_COOLING',
@@ -130,13 +149,6 @@ export class ParseInputs {
             // blank to the same effect.
             'NONE',
         ];
-
-        // Utility allowance can be blank or '', if the household is in a state
-        // that uses raw utility costs instead of standard utility allowances.
-        if (input_value === null || input_value === '') {
-            this.inputs[input_key] = null;
-            return true;
-        }
 
         if (UTILITY_ALLOWANCES.includes(input_value)) {
             return true;
