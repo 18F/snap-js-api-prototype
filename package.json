@@ -26,7 +26,7 @@
     "flow": "flow",
     "lint": "npx eslint src/",
     "lint-fix": "npx eslint --fix src/",
-    "check-all": "npm run feature-test && npm run flow && npm run lint"
+    "check-all": "npm run feature-test && npm run unit-test && npm run flow && npm run lint"
   },
   "author": "",
   "license": "ISC"
