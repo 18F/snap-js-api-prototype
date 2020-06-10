@@ -27,12 +27,12 @@ export class AssetTest {
         if (this.household_includes_elderly_or_disabled) {
             resource_limit = this.resource_limit_elderly_or_disabled;
             explanation = [
-                `Since the household includes an elderly or disabled member, the resource limit is ${resource_limit}`
+                `Since the household includes an elderly or disabled member, the resource limit is $${resource_limit}.`
             ];
         } else {
             resource_limit = this.resource_limit_non_elderly_or_disabled;
             explanation = [
-                `Since the household does not include an elderly or disabled member, the resource limit is ${resource_limit}`
+                `Since the household does not include an elderly or disabled member, the resource limit is $${resource_limit}.`
             ];
         }
 
