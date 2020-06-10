@@ -32,7 +32,7 @@ interface SnapEntrypointInputs {
     utility_allowance?: ?string;
     utility_costs?: ?number;
     court_ordered_child_support_payments?: ?number;
-    use_emergency_allotment: string;
+    use_emergency_allotment: boolean;
 }
 */
 
@@ -49,7 +49,7 @@ class SnapEstimateEntrypoint {
     dependent_care_costs: ?number;
     medical_expenses_for_elderly_or_disabled: ?number;
     court_ordered_child_support_payments: ?number;
-    use_emergency_allotment: string;
+    use_emergency_allotment: boolean;
     rent_or_mortgage: ?number;
     homeowners_insurance_and_taxes: ?number;
     utility_allowance: ?string;
@@ -78,6 +78,7 @@ class SnapEstimateEntrypoint {
 
     // Outputs
     estimated_benefit: number;
+    estimated_benefit_start_of_month: ?number;
     estimated_eligibility: boolean;
     */
 
@@ -167,11 +168,12 @@ class SnapEstimateEntrypoint {
             'household_size': this.household_size,
             'is_eligible': this.estimated_eligibility,
             'net_income': this.net_income,
-            'use_emergency_allotment': false,
+            'use_emergency_allotment': (this.use_emergency_allotment || false),
         });
 
         const benefit_amount_calculation = benefit_amount_estimate.calculate();
         this.estimated_benefit = benefit_amount_calculation.result;
+        this.estimated_benefit_start_of_month = benefit_amount_calculation.result_start_of_month;
 
         const eligibility_factors/*: Array<Array<string>> */ = [
             gross_income_calculation,
@@ -182,6 +184,7 @@ class SnapEstimateEntrypoint {
         return {
             'status': 'OK',
             'estimated_benefit': this.estimated_benefit,
+            'estimated_benefit_start_of_month': this.estimated_benefit_start_of_month, // If emergency allotments are in effect, a household may receive their regular benefit at the start of the month and the remainder later in the month. This value may be null.
             'estimated_eligibility': this.estimated_eligibility,
             'eligibility_factors': eligibility_factors,
             'state_website': this.state_website,
