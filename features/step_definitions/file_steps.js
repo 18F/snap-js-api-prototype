@@ -6,8 +6,12 @@ Given('the household is in {word}', function (state_or_territory) {
   this.state_or_territory = state_or_territory;
 });
 
-Given('{word} emergency allotment waiver', function (emergency_allotment) {
-  this.emergency_allotment = (emergency_allotment === 'an');
+Given('an emergency allotment waiver', function () {
+  this.use_emergency_allotment = true;
+});
+
+Given('no emergency allotment waiver', function () {
+  this.use_emergency_allotment = false;
 });
 
 Given('a {int}-person household', function (household_size) {
@@ -78,7 +82,6 @@ Given('the household has utility costs of ${int} monthly', function (utility_cos
   this.utility_costs = utility_costs;
 });
 
-
 When('we run the benefit estimator...', function () {
   const snap_estimator = new SnapEstimateEntrypoint({
     'household_includes_elderly_or_disabled': this.household_includes_elderly_or_disabled,
@@ -93,17 +96,22 @@ When('we run the benefit estimator...', function () {
     'rent_or_mortgage': this.rent_or_mortgage || 0,
     'homeowners_insurance_and_taxes': this.homeowners_insurance_and_taxes || 0,
     'utility_allowance': this.utility_allowance || 'NONE',
-    'use_emergency_allotment': this.emergency_allotment,
+    'use_emergency_allotment': this.use_emergency_allotment,
   });
 
   snap_estimator.calculate();
 
   this.estimated_benefit = snap_estimator.estimated_benefit;
   this.estimated_eligibility = snap_estimator.estimated_eligibility;
+  this.estimated_benefit_start_of_month = snap_estimator.estimated_benefit_start_of_month;
 });
 
 Then('we find the estimated benefit is ${int} per month', function (estimated_benefit) {
   assert.equal(this.estimated_benefit, estimated_benefit);
+});
+
+Then('we find the estimated benefit at the start of the month is ${int}', function (estimated_benefit_start_of_month) {
+  assert.equal(this.estimated_benefit_start_of_month, estimated_benefit_start_of_month);
 });
 
 Then('we find the family is likely {word}', function (estimated_eligibility) {
