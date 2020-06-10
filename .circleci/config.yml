@@ -1,16 +1,26 @@
 version: 2.1
 orbs:
-  node: circleci/node@1.1.6
+  node: circleci/node@3.0.0
 jobs:
   build-and-test:
     executor:
       name: node/default
     steps:
       - checkout
-      - node/with-cache:
-          steps:
-            - run: npm install
-            - run: npm test
+      - node/install:
+          node-version: 12.18.0
+      - run:
+          name: Feature tests
+          command: npm run feature-test
+      - run:
+          name: Unit tests
+          command: npm run unit-test
+      - run:
+          name: Type checks
+          command: npm run flow
+      - run:
+          name: Linter
+          command: npm run lint
 workflows:
     build-and-test:
       jobs:
