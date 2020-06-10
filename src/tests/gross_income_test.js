@@ -40,8 +40,10 @@ class GrossIncomeTest {
 
         explanation.push(gross_monthly_income_limit_explanation);
 
-        const result_to_words = { true: 'passes', null: 'does not meet' };
-        const result_in_words = result_to_words[below_gross_income_limit];
+        const result_in_words = (below_gross_income_limit)
+            ? 'passes'
+            : 'does not meet';
+
         const result_explanation = `Since the household gross income is $${this.gross_income}, this household <strong>${result_in_words}</strong> the gross income test.`;
         explanation.push(result_explanation);
 
