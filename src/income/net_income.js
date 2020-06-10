@@ -67,8 +67,8 @@ export class NetIncome {
         }).calculate();
 
         const deductions_before_shelter = [
-            earned_income_deduction,
             standard_deduction,
+            earned_income_deduction,
             dependent_care_deduction,
             medical_expenses_deduction,
             // TODO (ARS): Add Child Support Payments Deduction for states that deduct.
@@ -104,11 +104,22 @@ export class NetIncome {
 
         const total_deductions = total_deductions_before_shelter + shelter_deduction_result;
 
+        const total_deductions_explanation = (
+            `Next, we add all applicable deductions together. The total of all deductions is <strong>$${total_deductions}</strong>.`
+        );
+        explanation.push(total_deductions_explanation);
+        explanation.push('');
+
         const income_minus_deductions = this.gross_income - total_deductions;
 
         const result = (income_minus_deductions > 0)
             ? income_minus_deductions
             : 0;
+
+        const calculation_explanation = (
+            `Gross income (<strong>$${this.gross_income}</strong>) minus total deductions (<strong>$${total_deductions}</strong>) equals net income: <strong>$${result}.</strong>`
+        );
+        explanation.push(calculation_explanation);
 
         return {
             'name': 'Net Income',
