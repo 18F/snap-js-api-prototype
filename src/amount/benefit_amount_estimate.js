@@ -25,20 +25,10 @@ export class BenefitAmountEstimate {
             };
         }
 
-        if (this.use_emergency_allotment) {
-            return this.calculate_with_emergency_allotment();
-        } else {
-            return this.calculate_without_emergency_allotment();
-        }
+        return this.calculate_for_eligible_household();
     }
 
-    calculate_with_emergency_allotment() {
-        return {
-            'result': 194
-        };
-    }
-
-    calculate_without_emergency_allotment() {
+    calculate_for_eligible_household() {
         const explanation_intro = 'To determine the estimated amount of SNAP benefit, we start with the maximum allotment and then subtract 30% of net income.';
         const explanation = [explanation_intro];
 
@@ -90,6 +80,22 @@ export class BenefitAmountEstimate {
             explanation.push(zero_benefit_explanation);
         }
 
+        if (this.use_emergency_allotment) {
+            const use_emergency_allotment_explanation = (
+                `This gives us an estimated monthly benefit of $${estimated_benefit}. However, because SNAP emergency allotments are active in your state, if approved for SNAP you could receive $${estimated_benefit} at the start of the month and $${max_allotment} monthly.`
+            );
+            explanation.push(use_emergency_allotment_explanation);
+
+            return {
+                'name': 'Benefit Amount',
+                'sort_order': 5,
+                'result_start_of_month': estimated_benefit, // How much a household could expect to receive at the beginning of each month.
+                'result': max_allotment, // How much a household could expect to receive in total in a month.
+                'explanation': explanation,
+            };
+        }
+
+        // Without emergency allotments in effect
         return {
             'name': 'Benefit Amount',
             'sort_order': 5,
