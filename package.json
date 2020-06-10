@@ -3,14 +3,13 @@
   "version": "0.0.1",
   "description": "A SNAP eligibility calculator in JavaScript",
   "private": "true",
-  "dependencies": {
-    "chai": "^4.2.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.10.1",
     "@babel/preset-env": "^7.10.1",
     "@babel/register": "^7.10.1",
     "babel-loader": "^8.1.0",
+    "chai": "^4.2.0",
     "cucumber": "^6.0.5",
     "eslint": "^7.1.0",
     "flow": "^0.2.3",

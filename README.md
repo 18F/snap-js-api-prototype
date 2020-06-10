@@ -35,6 +35,6 @@ See `package.json` for all developer commands.
 
 ### Notes
 
-+ This project is using [flow](https://flow.org/) for type checking, with flow checks being added incrementally file-by-file.
++ This project aims for the API itself to have no npm dependencies. The libraries included in `package.json` are used to compile and test the Javascript API, but none of them are bundled into the compiled API itself.
 
-+
++ This project is using [flow](https://flow.org/) for type checking, with flow checks being added incrementally file-by-file. Flow type checking coverage is currently low.
