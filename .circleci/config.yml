@@ -10,6 +10,9 @@ jobs:
       - node/install:
           node-version: 12.18.0
       - run:
+          name: Install dev dependencies
+          command: npm install --save-dev
+      - run:
           name: Feature tests
           command: npm run feature-test
       - run:
