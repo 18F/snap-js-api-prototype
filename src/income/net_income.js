@@ -89,7 +89,7 @@ export class NetIncome {
             this.gross_income - total_deductions_before_shelter
         );
 
-        const shelter_deduction_result = new ShelterDeduction({
+        const shelter_deduction_calculation = new ShelterDeduction({
             'adjusted_income': adjusted_income_before_excess_shelter,
             'state_or_territory': this.state_or_territory,
             'household_size': this.household_size,
@@ -100,7 +100,13 @@ export class NetIncome {
             'utility_allowance': this.utility_allowance,
             'mandatory_standard_utility_allowances': this.mandatory_standard_utility_allowances,
             'standard_utility_allowances': this.standard_utility_allowances,
-        }).calculate()['result'];
+        }).calculate();
+
+        for (const explanation_graph of shelter_deduction_calculation['explanation']) {
+            explanation.push(explanation_graph);
+        }
+
+        const shelter_deduction_result = shelter_deduction_calculation['result'];
 
         const total_deductions = total_deductions_before_shelter + shelter_deduction_result;
 
