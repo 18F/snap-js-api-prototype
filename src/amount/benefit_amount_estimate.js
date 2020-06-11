@@ -80,26 +80,33 @@ export class BenefitAmountEstimate {
             explanation.push(zero_benefit_explanation);
         }
 
-        if (this.use_emergency_allotment) {
-            const use_emergency_allotment_explanation = (
-                `This gives us an estimated monthly benefit of $${estimated_benefit}. However, because SNAP emergency allotments are active in your state, if approved for SNAP you could receive $${estimated_benefit} at the start of the month and $${max_allotment} monthly.`
-            );
-            explanation.push(use_emergency_allotment_explanation);
-
+        if (!this.use_emergency_allotment) {
+            // Without emergency allotments in effect
             return {
                 'name': 'Benefit Amount',
                 'sort_order': 5,
-                'result_start_of_month': estimated_benefit, // How much a household could expect to receive at the beginning of each month.
-                'result': max_allotment, // How much a household could expect to receive in total in a month.
+                'result': estimated_benefit,
                 'explanation': explanation,
             };
         }
 
-        // Without emergency allotments in effect
+        if (estimated_benefit === max_allotment) {
+            // With emergency allotments, household already receiving max benefit:
+            explanation.push(
+                `This gives us an estimated monthly benefit of $${estimated_benefit}, which is the maximum benefit amount.`
+            );
+        } else {
+            // With emergency allotments, household not already receiving max benefit:
+            explanation.push(
+                `This gives us an estimated monthly benefit of $${estimated_benefit}. However, because SNAP emergency allotments are active in your state, if approved your benefit could be as much as $${max_allotment} per month.`
+            );
+        }
+
         return {
             'name': 'Benefit Amount',
             'sort_order': 5,
-            'result': estimated_benefit,
+            'result_start_of_month': estimated_benefit, // How much a household could expect to receive at the beginning of each month.
+            'result': max_allotment, // How much a household could expect to receive in total in a month.
             'explanation': explanation,
         };
     }
