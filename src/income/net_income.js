@@ -3,6 +3,7 @@ import { EarnedIncomeDeduction } from '../deductions/earned_income_deduction.js'
 import { DependentCareDeduction } from '../deductions/dependent_care_deduction.js';
 import { MedicalExpensesDeduction } from '../deductions/medical_expenses_deduction.js';
 import { ShelterDeduction } from '../deductions/shelter_deduction.js';
+import { ChildSupportPaymentsDeduction } from '../deductions/child_support_payments_deduction.js';
 
 export class NetIncome {
     constructor(inputs) {
@@ -21,6 +22,8 @@ export class NetIncome {
         this.utility_allowance = inputs.utility_allowance;
         this.mandatory_standard_utility_allowances = inputs.mandatory_standard_utility_allowances;
         this.standard_utility_allowances = inputs.standard_utility_allowances;
+        this.child_support_payments_treatment = inputs.child_support_payments_treatment;
+        this.court_ordered_child_support_payments = inputs.court_ordered_child_support_payments;
     }
 
     calculate() {
@@ -66,12 +69,17 @@ export class NetIncome {
             'standard_medical_deduction_amount': this.standard_medical_deduction_amount,
         }).calculate();
 
+        const child_support_payments_deduction = new ChildSupportPaymentsDeduction({
+            'child_support_payments_treatment': this.child_support_payments_treatment,
+            'court_ordered_child_support_payments': this.court_ordered_child_support_payments,
+        }).calculate();
+
         const deductions_before_shelter = [
             standard_deduction,
             earned_income_deduction,
             dependent_care_deduction,
             medical_expenses_deduction,
-            // TODO (ARS): Add Child Support Payments Deduction for states that deduct.
+            child_support_payments_deduction,
         ];
 
         let total_deductions_before_shelter = 0;

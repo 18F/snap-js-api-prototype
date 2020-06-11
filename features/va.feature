@@ -100,3 +100,22 @@ Feature: Virginia scenarios, no EA waiver
     And the household has assets of $4000
     When we run the benefit estimator...
       Then we find the family is likely ineligible
+
+
+  # CHILD SUPPORT PAYMENTS DEDUCTION #
+
+  Scenario:
+    Given a 1-person household
+    And the household has other income of $1000 monthly
+    And the household has court-ordered child support payments of $300 monthly
+    When we run the benefit estimator...
+      Then we find the family is likely eligible
+      And we find the estimated benefit is $34 per month
+
+  Scenario: Higher child support payment increases benefit
+    Given a 1-person household
+    And the household has other income of $1000 monthly
+    And the household has court-ordered child support payments of $600 monthly
+    When we run the benefit estimator...
+      Then we find the family is likely eligible
+      And we find the estimated benefit is $124 per month
