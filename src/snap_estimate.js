@@ -1,3 +1,5 @@
+// @flow
+
 import { STATE_OPTIONS } from './program_data/state_options.js';
 
 import { NetIncome } from './income/net_income.js';
@@ -14,8 +16,70 @@ const DEFAULT_GROSS_INCOME_LIMIT_FACTOR = 1.3;
 const DEFAULT_RESOURCE_LIMIT_ELDERLY_OR_DISABLED = 3500;
 const DEFAULT_RESOURCE_LIMIT_NON_ELDERLY_OR_DISABLED = 2250;
 
+/*::
+interface SnapEstimateInputs {
+    state_or_territory: State;
+    monthly_job_income: number;
+    monthly_non_job_income: number;
+    household_size: number;
+    household_includes_elderly_or_disabled: boolean;
+    resources: number;
+    dependent_care_costs?: ?number;
+    medical_expenses_for_elderly_or_disabled?: ?number;
+    rent_or_mortgage?: ?number;
+    homeowners_insurance_and_taxes?: ?number;
+    utility_allowance?: ?string;
+    utility_costs?: ?number;
+    court_ordered_child_support_payments?: ?number;
+    use_emergency_allotment: boolean;
+}
+*/
+
 export class SnapEstimate {
-    constructor(inputs) {
+    /*::
+    // Inputs
+    state_or_territory: string;
+    monthly_job_income: number;
+    monthly_non_job_income: number;
+    household_size: number;
+    household_includes_elderly_or_disabled: boolean;
+    resources: number;
+    dependent_care_costs: ?number;
+    medical_expenses_for_elderly_or_disabled: ?number;
+    court_ordered_child_support_payments: ?number;
+    use_emergency_allotment: boolean;
+    rent_or_mortgage: ?number;
+    homeowners_insurance_and_taxes: ?number;
+    utility_allowance: ?string;
+    utility_costs: ?number;
+
+    // State Options
+    state_options: Object;
+    gross_income_limit_factor: number;
+    resource_limit_elderly_or_disabled: number;
+    resource_limit_elderly_or_disabled_income_twice_fpl: number;
+    resource_limit_non_elderly_or_disabled: number;
+    child_support_payments_treatment: string;
+    net_monthly_income_limit: number;
+    standard_medical_deduction: boolean;
+    standard_medical_deduction_amount: number;
+    standard_utility_allowances: Object;
+    mandatory_standard_utility_allowances: boolean;
+    state_website: string;
+
+    // Calculated
+    gross_income_calculation: Object;
+    net_income_calculation: Object;
+    gross_income: number;
+    net_income: number;
+
+    // Outputs
+    estimated_benefit: number;
+    estimated_benefit_start_of_month: ?number;
+    estimated_eligibility: boolean;
+    */
+
+    constructor(inputs /*: SnapEstimateInputs */) {
         // Inputs below have been validated in the higher-level
         // SnapEstimateEntrypoint class using ParseInputs.
         this.state_or_territory = inputs.state_or_territory;
