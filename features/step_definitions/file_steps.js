@@ -99,11 +99,11 @@ When('we run the benefit estimator...', function () {
     'use_emergency_allotment': this.use_emergency_allotment,
   });
 
-  snap_estimator.calculate();
+  const result = snap_estimator.calculate();
 
-  this.estimated_benefit = snap_estimator.estimated_benefit;
-  this.estimated_eligibility = snap_estimator.estimated_eligibility;
-  this.estimated_benefit_start_of_month = snap_estimator.estimated_benefit_start_of_month;
+  this.estimated_benefit = result.estimated_benefit;
+  this.estimated_eligibility = result.estimated_eligibility;
+  this.estimated_benefit_start_of_month = result.estimated_benefit_start_of_month;
 });
 
 Then('we find the estimated benefit is ${int} per month', function (estimated_benefit) {
