@@ -156,7 +156,7 @@ export const STATE_OPTIONS /*: StateOptions */ = {
     },
     'VA': {
         '2020': {
-            'child_support_payments_treatment': 'DEDUCT',
+            'child_support_payments_treatment': 'EXCLUDE', // This matches materials provided by VPLC and VA DSS but not the latest USDA State Options Report
             'mandatory_standard_utility_allowances': false,
             'standard_medical_deduction': true,
             'standard_medical_deduction_amount': 140,
