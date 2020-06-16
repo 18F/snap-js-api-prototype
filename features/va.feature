@@ -119,3 +119,42 @@ Feature: Virginia scenarios, no EA waiver
     When we run the benefit estimator...
       Then we find the family is likely eligible
       And we find the estimated benefit is $124 per month
+
+
+  # MEDICAL STANDARD DEDUCTION #
+
+  Scenario: Household with medical expenses below $35 threshold
+    Given a 1-person household
+    And the household has other income of $700 monthly
+    And the household does include an elderly or disabled member
+    And the household has medical expenses for elderly or disabled members of $34 monthly
+    When we run the benefit estimator...
+      Then we find the family is likely eligible
+      Then we find the estimated benefit is $34 per month
+
+  Scenario: Household with medical expenses above $35 threshold
+    Given a 1-person household
+    And the household has other income of $700 monthly
+    And the household does include an elderly or disabled member
+    And the household has medical expenses for elderly or disabled members of $36 monthly
+    When we run the benefit estimator...
+      Then we find the family is likely eligible
+      Then we find the estimated benefit is $94 per month
+
+  Scenario: Household with medical expenses below $235 threshold
+    Given a 1-person household
+    And the household has other income of $700 monthly
+    And the household does include an elderly or disabled member
+    And the household has medical expenses for elderly or disabled members of $234 monthly
+    When we run the benefit estimator...
+      Then we find the family is likely eligible
+      Then we find the estimated benefit is $94 per month
+
+  Scenario: Household with medical expenses above $235 threshold
+    Given a 1-person household
+    And the household has other income of $700 monthly
+    And the household does include an elderly or disabled member
+    And the household has medical expenses for elderly or disabled members of $300 monthly
+    When we run the benefit estimator...
+      Then we find the family is likely eligible
+      Then we find the estimated benefit is $124 per month

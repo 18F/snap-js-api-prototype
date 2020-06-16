@@ -62,7 +62,8 @@ export const STATE_OPTIONS /*: StateOptions */ = {
             'resource_limit_elderly_or_disabled_income_twice_fpl': 3500,
             'resource_limit_non_elderly_or_disabled': null,
             'standard_medical_deduction': true,
-            'standard_medical_deduction_amount': 165,
+            'standard_medical_deduction_amount': 200,
+            'standard_medical_deduction_ceiling': 200,
             'standard_utility_allowances': {
                 'BASIC_LIMITED_ALLOWANCE': 328,
                 'HEATING_AND_COOLING': 478,
@@ -159,7 +160,8 @@ export const STATE_OPTIONS /*: StateOptions */ = {
             'child_support_payments_treatment': 'EXCLUDE', // This matches materials provided by VPLC and VA DSS but not the latest USDA State Options Report
             'mandatory_standard_utility_allowances': false,
             'standard_medical_deduction': true,
-            'standard_medical_deduction_amount': 140,
+            'standard_medical_deduction_amount': 200,
+            'standard_medical_deduction_ceiling': 235,
             'use_emergency_allotment': true,
             'uses_bbce': false,
             'website': 'https://commonhelp.virginia.gov/'

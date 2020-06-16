@@ -7,6 +7,7 @@ export class MedicalExpensesDeduction {
         this.medical_expenses_for_elderly_or_disabled = inputs.medical_expenses_for_elderly_or_disabled;
         this.standard_medical_deduction = inputs.standard_medical_deduction;
         this.standard_medical_deduction_amount = inputs.standard_medical_deduction_amount;
+        this.standard_medical_deduction_ceiling = inputs.standard_medical_deduction_ceiling;
     }
 
     calculate() {
@@ -67,15 +68,15 @@ export class MedicalExpensesDeduction {
         }
 
         // State that uses a Standard Medical Deduction
-        const expenses_above_standard = (
-            this.medical_expenses_for_elderly_or_disabled > (this.standard_medical_deduction_amount + 35)
+        const expenses_above_ceiling = (
+            this.medical_expenses_for_elderly_or_disabled > this.standard_medical_deduction_ceiling
         );
 
-        if (expenses_above_standard) {
-            const medical_expenses_deduction = this.medical_expenses_for_elderly_or_disabled - 35;
+        if (expenses_above_ceiling) {
+            const medical_expenses_deduction = this.medical_expenses_for_elderly_or_disabled;
 
             explanation.push(
-                `Medical expenses are greater than the Standard Medical Deduction amount of $${this.standard_medical_deduction_amount}. In this case, the full medical expense amount less $35 can be deducted, which comes to $${medical_expenses_deduction}. `
+                `Medical expenses are greater than the Standard Medical Deduction maximum amount of $${this.standard_medical_deduction_ceiling}. In this case, the full medical expense amount can be deducted, which comes to $${medical_expenses_deduction}. `
             );
 
             return {
