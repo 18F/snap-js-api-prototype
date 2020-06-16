@@ -16,6 +16,7 @@ export class NetIncome {
         this.medical_expenses_for_elderly_or_disabled = inputs.medical_expenses_for_elderly_or_disabled;
         this.standard_medical_deduction = inputs.standard_medical_deduction;
         this.standard_medical_deduction_amount = inputs.standard_medical_deduction_amount;
+        this.standard_medical_deduction_ceiling = inputs.standard_medical_deduction_ceiling;
         this.rent_or_mortgage = inputs.rent_or_mortgage;
         this.homeowners_insurance_and_taxes = inputs.homeowners_insurance_and_taxes;
         this.utility_costs = inputs.utility_costs;
@@ -67,6 +68,7 @@ export class NetIncome {
             'medical_expenses_for_elderly_or_disabled': this.medical_expenses_for_elderly_or_disabled,
             'standard_medical_deduction': this.standard_medical_deduction,
             'standard_medical_deduction_amount': this.standard_medical_deduction_amount,
+            'standard_medical_deduction_ceiling': this.standard_medical_deduction_ceiling,
         }).calculate();
 
         const child_support_payments_deduction = new ChildSupportPaymentsDeduction({

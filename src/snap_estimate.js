@@ -63,6 +63,7 @@ export class SnapEstimate {
     net_monthly_income_limit: number;
     standard_medical_deduction: boolean;
     standard_medical_deduction_amount: number;
+    standard_medical_deduction_ceiling: number;
     standard_utility_allowances: Object;
     mandatory_standard_utility_allowances: boolean;
     state_website: string;
@@ -119,6 +120,7 @@ export class SnapEstimate {
         this.child_support_payments_treatment = state_options['child_support_payments_treatment'];
         this.standard_medical_deduction = state_options['standard_medical_deduction'];
         this.standard_medical_deduction_amount = state_options['standard_medical_deduction_amount'];
+        this.standard_medical_deduction_ceiling = state_options['standard_medical_deduction_ceiling'];
         this.mandatory_standard_utility_allowances = state_options['mandatory_standard_utility_allowances'];
         this.standard_utility_allowances = state_options['standard_utility_allowances'];
         this.state_website = state_options['website'];
@@ -226,6 +228,7 @@ export class SnapEstimate {
             'medical_expenses_for_elderly_or_disabled': this.medical_expenses_for_elderly_or_disabled,
             'standard_medical_deduction': this.standard_medical_deduction,
             'standard_medical_deduction_amount': this.standard_medical_deduction_amount,
+            'standard_medical_deduction_ceiling': this.standard_medical_deduction_ceiling,
             'rent_or_mortgage': this.rent_or_mortgage,
             'homeowners_insurance_and_taxes': this.homeowners_insurance_and_taxes,
             'utility_costs': this.utility_costs,

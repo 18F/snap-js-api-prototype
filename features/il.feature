@@ -6,11 +6,6 @@
 # Some calculations result in small differences, which may be due
 # to rounding differences or slightly different data sets being used.
 
-# A few surprising results from the Illinois calculator:
-# * Standard deduction listed as $160 instead of $167.
-# * Family of 3 with an elderly or disabled household member, medical expenses
-#   of $135 lists Medical Deduction as $165 instead of $100.
-
 Feature: Illinois scenarios, no EA waiver
 
   Background:
@@ -142,7 +137,7 @@ Feature: Illinois scenarios, no EA waiver
       Then we find the family is likely eligible
       And we find the estimated benefit is $341 per month
 
-  Scenario: Medical expenses of $36 increase deduction by $165, benefit by ~$50
+  Scenario: Medical expenses of $36 increase deduction by $200, benefit by $60
     Given a 3-person household
     And the household does include an elderly or disabled member
     And the household has earned income of $400 monthly
@@ -150,9 +145,9 @@ Feature: Illinois scenarios, no EA waiver
     And the household has medical expenses for elderly or disabled members of $36 monthly
     When we run the benefit estimator...
       Then we find the family is likely eligible
-      And we find the estimated benefit is $390 per month
+      And we find the estimated benefit is $401 per month
 
-  Scenario: Medical expenses of $135 increase deduction by $165, benefit by ~$50
+  Scenario: Medical expenses of $135 increase deduction by $200, benefit by $60
     Given a 3-person household
     And the household does include an elderly or disabled member
     And the household has earned income of $400 monthly
@@ -160,27 +155,17 @@ Feature: Illinois scenarios, no EA waiver
     And the household has medical expenses for elderly or disabled members of $135 monthly
     When we run the benefit estimator...
       Then we find the family is likely eligible
-      And we find the estimated benefit is $390 per month
-
-  Scenario: Medical expenses of $210 increase deduction by $175, benefit by $53
-    Given a 3-person household
-    And the household does include an elderly or disabled member
-    And the household has earned income of $400 monthly
-    And the household has other income of $400 monthly
-    And the household has medical expenses for elderly or disabled members of $210 monthly
-    When we run the benefit estimator...
-      Then we find the family is likely eligible
-      And we find the estimated benefit is $393 per month
-
-  Scenario: Medical expenses of $235 increase deduction by $200, benefit by $60
-    Given a 3-person household
-    And the household does include an elderly or disabled member
-    And the household has earned income of $400 monthly
-    And the household has other income of $400 monthly
-    And the household has medical expenses for elderly or disabled members of $235 monthly
-    When we run the benefit estimator...
-      Then we find the family is likely eligible
       And we find the estimated benefit is $401 per month
+
+  Scenario: Medical expenses of $300 increase deduction by $300, benefit by $90
+    Given a 3-person household
+    And the household does include an elderly or disabled member
+    And the household has earned income of $400 monthly
+    And the household has other income of $400 monthly
+    And the household has medical expenses for elderly or disabled members of $300 monthly
+    When we run the benefit estimator...
+      Then we find the family is likely eligible
+      And we find the estimated benefit is $431 per month
 
   Scenario: Medical expenses do not affect benefit if household does not include an elderly or disabled member
     Given a 3-person household
