@@ -47,6 +47,34 @@ describe('ParseInputs', () => {
         });
     });
 
+    it('parses decimal values into integer dollar amounts', () => {
+        const inputs = {
+            'state_or_territory': 'IL',
+            'monthly_job_income': '101.90',
+            'monthly_non_job_income': '101.10',
+            'household_size': '1',
+            'household_includes_elderly_or_disabled': 'false',
+            'resources': '1001.50'
+        };
+
+        const parser = new ParseInputs(inputs);
+
+        assert.equal(parser.inputs_valid(), true);
+        assert.deepEqual(parser.inputs, {
+            'court_ordered_child_support_payments': 0,
+            'dependent_care_costs': 0,
+            'homeowners_insurance_and_taxes': 0,
+            'household_includes_elderly_or_disabled': false,
+            'household_size': 1,
+            'medical_expenses_for_elderly_or_disabled': 0,
+            'monthly_job_income': 101,
+            'monthly_non_job_income': 101,
+            'rent_or_mortgage': 0,
+            'resources': 1001,
+            'state_or_territory': 'IL',
+            'utility_costs': 0,
+        });
+    });
 
     it('should parse string `true` to a boolean for a boolean field', () => {
         const inputs = {
