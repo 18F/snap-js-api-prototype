@@ -9,7 +9,7 @@ export class ChildSupportPaymentsDeduction {
             return {
                 'result': 0,
                 'explanation': [
-                    'Court-ordered child support payments are not deductible in this state, (they are excluded from gross income instead).'
+                    'In this state, court-ordered child support payments are excluded from gross income instead of deducted.'
                 ]
             };
         }
