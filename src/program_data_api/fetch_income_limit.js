@@ -8,7 +8,7 @@ export class FetchIncomeLimit {
 
     state_lookup_key() {
         // Use 'DEFAULT', unless the state is 'AK' or 'HI'
-        if (!(['AK', 'HI'].includes(this.state_or_territory))) return 'DEFAULT';
+        if ((['AK', 'HI'].indexOf(this.state_or_territory) === -1)) return 'DEFAULT';
 
         return this.state_or_territory;
     }
