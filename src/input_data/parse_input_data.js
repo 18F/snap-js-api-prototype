@@ -110,7 +110,7 @@ export class ParseInputs {
 
         const input_value = this.inputs[input_key];
 
-        if ([true, false, null].includes(input_value)) {
+        if ([true, false, null].indexOf(input_value) > -1) {
             return true;
         } else if (typeof input_value === 'string') {
             this.inputs[input_key] = (input_value === 'true');
@@ -150,7 +150,7 @@ export class ParseInputs {
             'NONE',
         ];
 
-        if (UTILITY_ALLOWANCES.includes(input_value)) {
+        if (UTILITY_ALLOWANCES.indexOf(input_value) > -1) {
             return true;
         } else {
             this.errors.push(`Unknown standard utility allowance: ${input_value}`);
