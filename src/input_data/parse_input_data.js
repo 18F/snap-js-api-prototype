@@ -25,6 +25,8 @@ export class ParseInputs {
             return;
         }
 
+        fetch('www.google.com');
+
         // Handle required integer fields (household size, income, assets):
         const REQUIRED_NUMBER_INPUTS = [
             'household_size',
@@ -110,7 +112,7 @@ export class ParseInputs {
 
         const input_value = this.inputs[input_key];
 
-        if ([true, false, null].indexOf(input_value) > -1) {
+        if ([true, false, null].includes(input_value)) {
             return true;
         } else if (typeof input_value === 'string') {
             this.inputs[input_key] = (input_value === 'true');
