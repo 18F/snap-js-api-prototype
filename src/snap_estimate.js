@@ -151,7 +151,7 @@ export class SnapEstimate {
             return calculation.result;
         });
 
-        this.estimated_eligibility = eligibility_results.indexOf(false) === -1;
+        this.estimated_eligibility = !(eligibility_results.includes(false));
 
         // Calculate estimated benefit amount
         const benefit_amount_estimate = new BenefitAmountEstimate({

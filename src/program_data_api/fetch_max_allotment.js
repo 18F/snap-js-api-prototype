@@ -19,7 +19,7 @@ export class FetchMaxAllotment {
             'VIRGIN_ISLANDS',
         ];
 
-        return (NON_DEFAULT_STATES_TERRITORIES.indexOf(this.state_or_territory) > -1)
+        return NON_DEFAULT_STATES_TERRITORIES.includes(this.state_or_territory)
             ? this.state_or_territory
             : 'DEFAULT';
     }
