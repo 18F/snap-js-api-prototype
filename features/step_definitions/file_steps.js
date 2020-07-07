@@ -103,15 +103,15 @@ When('we run the benefit estimator...', function () {
 
   this.estimated_benefit = result.estimated_benefit;
   this.estimated_eligibility = result.estimated_eligibility;
-  this.estimated_benefit_start_of_month = result.estimated_benefit_start_of_month;
+  this.emergency_allotment_estimated_benefit = result.emergency_allotment_estimated_benefit;
 });
 
 Then('we find the estimated benefit is ${int} per month', function (estimated_benefit) {
   assert.equal(this.estimated_benefit, estimated_benefit);
 });
 
-Then('we find the estimated benefit at the start of the month is ${int}', function (estimated_benefit_start_of_month) {
-  assert.equal(this.estimated_benefit_start_of_month, estimated_benefit_start_of_month);
+Then('we find the estimated benefit including emergency allotment is ${int}', function (emergency_allotment_estimated_benefit) {
+  assert.equal(this.emergency_allotment_estimated_benefit, emergency_allotment_estimated_benefit);
 });
 
 Then('we find the family is likely {word}', function (estimated_eligibility) {
