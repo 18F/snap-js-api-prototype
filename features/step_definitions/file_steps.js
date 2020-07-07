@@ -101,13 +101,13 @@ When('we run the benefit estimator...', function () {
 
   const result = snap_estimator.calculate();
 
-  this.estimated_benefit = result.estimated_benefit;
+  this.estimated_monthly_benefit = result.estimated_monthly_benefit;
   this.estimated_eligibility = result.estimated_eligibility;
   this.emergency_allotment_estimated_benefit = result.emergency_allotment_estimated_benefit;
 });
 
-Then('we find the estimated benefit is ${int} per month', function (estimated_benefit) {
-  assert.equal(this.estimated_benefit, estimated_benefit);
+Then('we find the estimated benefit is ${int} per month', function (estimated_monthly_benefit) {
+  assert.equal(this.estimated_monthly_benefit, estimated_monthly_benefit);
 });
 
 Then('we find the estimated benefit including emergency allotment is ${int}', function (emergency_allotment_estimated_benefit) {
