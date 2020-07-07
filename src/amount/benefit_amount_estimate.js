@@ -105,8 +105,8 @@ export class BenefitAmountEstimate {
         return {
             'name': 'Benefit Amount',
             'sort_order': 5,
-            'emergency_allotment_total': max_allotment,
             'result': estimated_benefit,
+            'emergency_allotment_estimated_benefit': max_allotment,
             'explanation': explanation,
         };
     }

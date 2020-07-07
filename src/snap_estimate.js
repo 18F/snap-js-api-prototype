@@ -164,7 +164,7 @@ export class SnapEstimate {
 
         const benefit_amount_calculation = benefit_amount_estimate.calculate();
         this.estimated_monthly_benefit = benefit_amount_calculation.result;
-        this.emergency_allotment_estimated_benefit = benefit_amount_calculation.emergency_allotment_total;
+        this.emergency_allotment_estimated_benefit = benefit_amount_calculation.emergency_allotment_estimated_benefit;
 
         const eligibility_factors/*: Array<Array<string>> */ = [
             gross_income_calculation,
