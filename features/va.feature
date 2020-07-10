@@ -69,8 +69,8 @@ Feature: Virginia scenarios, no EA waiver
     And an emergency allotment waiver
     When we run the benefit estimator...
       Then we find the family is likely eligible
-      And we find the estimated benefit is $194 per month
-      And we find the estimated benefit at the start of the month is $34
+      And we find the estimated benefit is $34 per month
+      And we find the estimated benefit including emergency allotment is $194
 
 
   # ASSET TEST #

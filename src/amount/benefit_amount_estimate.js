@@ -105,8 +105,8 @@ export class BenefitAmountEstimate {
         return {
             'name': 'Benefit Amount',
             'sort_order': 5,
-            'result_start_of_month': estimated_benefit, // How much a household could expect to receive at the beginning of each month.
-            'result': max_allotment, // How much a household could expect to receive in total in a month.
+            'result': estimated_benefit,
+            'emergency_allotment_estimated_benefit': max_allotment,
             'explanation': explanation,
         };
     }
