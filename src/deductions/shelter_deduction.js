@@ -149,14 +149,14 @@ export class ShelterDeduction {
 
                     return {
                         'result': result,
-                        'explanation': `Virginia has a standard utility allowance of ${result} for households with four or more household members.`,
+                        'explanation': `Virginia has a standard utility allowance of $${result} for households with four or more household members.`,
                     };
                 } else {
                     let result = heating_cooling_allowances['below_four'];
 
                     return {
                         'result': result,
-                        'explanation': `Virginia has a standard utility allowance of ${result} for households with less than four household members.`,
+                        'explanation': `Virginia has a standard utility allowance of $${result} for households with less than four household members.`,
                     };
                 }
             }
