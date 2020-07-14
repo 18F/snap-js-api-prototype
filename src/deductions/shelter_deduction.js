@@ -119,14 +119,6 @@ export class ShelterDeduction {
     }
 
     calculate_utility_costs() {
-        // State without Standard Utility Allowances
-        if (!this.mandatory_standard_utility_allowances) {
-            return {
-                'result': this.utility_costs,
-                'explanation': `In this case, the household has utility costs of $${this.utility_costs}, so total shelter plus utilities costs come to $${this.base_shelter_costs + this.utility_costs}.`
-            };
-        }
-
         // State with Standard Utility Allowances, no utility allowance claimed
         if (this.utility_allowance === null || this.utility_allowance === 'NONE') {
             // In this case the client has either:
@@ -143,6 +135,38 @@ export class ShelterDeduction {
                     'In this case there is no deduction for utilities, likely ' +
                     'because the household is not billed separately for utilities.'
                 )
+            };
+        }
+
+        // VA is one of a few states that adjust standard utility allowances
+        // based on household size
+        if (this.state_or_territory === 'VA') {
+            if (this.utility_allowance === 'HEATING_AND_COOLING') {
+                const heating_cooling_allowances = this.standard_utility_allowances['HEATING_AND_COOLING'];
+
+                if (this.household_size >= 4) {
+                    let result = heating_cooling_allowances['four_or_more'];
+
+                    return {
+                        'result': result,
+                        'explanation': `Virginia has a standard utility allowance of ${result} for households with four or more household members.`,
+                    };
+                } else {
+                    let result = heating_cooling_allowances['below_four'];
+
+                    return {
+                        'result': result,
+                        'explanation': `Virginia has a standard utility allowance of ${result} for households with less than four household members.`,
+                    };
+                }
+            }
+        }
+
+        // State without Standard Utility Allowances
+        if (!this.mandatory_standard_utility_allowances) {
+            return {
+                'result': this.utility_costs,
+                'explanation': `In this case, the household has utility costs of $${this.utility_costs}, so total shelter plus utilities costs come to $${this.base_shelter_costs + this.utility_costs}.`
             };
         }
 

@@ -53,6 +53,12 @@ export const STATE_OPTIONS /*: StateOptions */ = {
             'use_emergency_allotment': true,
             'uses_bbce': false,
             'website': 'https://commonhelp.virginia.gov/',
+            'standard_utility_allowances': {
+                'HEATING_AND_COOLING': {
+                    'below_four': 303,
+                    'four_or_more': 379,
+                },
+            },
             'next_steps': [
                 {
                     'url': 'https://commonhelp.virginia.gov/',
