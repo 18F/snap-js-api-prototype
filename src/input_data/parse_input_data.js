@@ -25,8 +25,6 @@ export class ParseInputs {
             return;
         }
 
-        fetch('www.google.com');
-
         // Handle required integer fields (household size, income, assets):
         const REQUIRED_NUMBER_INPUTS = [
             'household_size',
