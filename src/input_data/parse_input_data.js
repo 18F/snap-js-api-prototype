@@ -131,9 +131,9 @@ export class ParseInputs {
 
         const input_value = this.inputs[input_key];
 
-        // Utility allowance can be blank or '', if the household is in a state
-        // that uses raw utility costs instead of standard utility allowances.
-        if (input_value === null || input_value === '') {
+        // Convert null, undefined, '', NaN values to null:
+        // https://developer.mozilla.org/en-US/docs/Glossary/Falsy
+        if (!input_value) {
             this.inputs[input_key] = null;
             return true;
         }
