@@ -205,3 +205,14 @@ Feature: Virginia scenarios, no EA waiver
     When we run the benefit estimator...
       Then we find the family is likely eligible
       Then we find the estimated benefit is $180 per month
+
+  # Larger household (four or more people) gets a different SUA amount:
+  Scenario:
+    Given a 5-person household
+    And the household does include an elderly or disabled member
+    And the household has other income of $1200 monthly
+    And the household has rent or mortgage costs of $1200 monthly
+    And the household pays for AC or heat, or otherwise qualifies for AC-heat utility allowance
+    When we run the benefit estimator...
+      Then we find the family is likely eligible
+      Then we find the estimated benefit is $768 per month
