@@ -65,7 +65,6 @@ export class SnapEstimate {
     standard_medical_deduction_amount: number;
     standard_medical_deduction_ceiling: number;
     standard_utility_allowances: Object;
-    mandatory_standard_utility_allowances: boolean;
     state_website: string;
 
     // Calculated
@@ -121,7 +120,6 @@ export class SnapEstimate {
         this.standard_medical_deduction = state_options['standard_medical_deduction'];
         this.standard_medical_deduction_amount = state_options['standard_medical_deduction_amount'];
         this.standard_medical_deduction_ceiling = state_options['standard_medical_deduction_ceiling'];
-        this.mandatory_standard_utility_allowances = state_options['mandatory_standard_utility_allowances'];
         this.standard_utility_allowances = state_options['standard_utility_allowances'];
         this.state_website = state_options['website'];
 
@@ -233,7 +231,6 @@ export class SnapEstimate {
             'homeowners_insurance_and_taxes': this.homeowners_insurance_and_taxes,
             'utility_costs': this.utility_costs,
             'utility_allowance': this.utility_allowance,
-            'mandatory_standard_utility_allowances': this.mandatory_standard_utility_allowances,
             'standard_utility_allowances': this.standard_utility_allowances,
             'child_support_payments_treatment': this.child_support_payments_treatment,
             'court_ordered_child_support_payments': this.court_ordered_child_support_payments,

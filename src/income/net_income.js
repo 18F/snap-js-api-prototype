@@ -21,7 +21,6 @@ export class NetIncome {
         this.homeowners_insurance_and_taxes = inputs.homeowners_insurance_and_taxes;
         this.utility_costs = inputs.utility_costs;
         this.utility_allowance = inputs.utility_allowance;
-        this.mandatory_standard_utility_allowances = inputs.mandatory_standard_utility_allowances;
         this.standard_utility_allowances = inputs.standard_utility_allowances;
         this.child_support_payments_treatment = inputs.child_support_payments_treatment;
         this.court_ordered_child_support_payments = inputs.court_ordered_child_support_payments;
@@ -108,7 +107,6 @@ export class NetIncome {
             'homeowners_insurance_and_taxes': this.homeowners_insurance_and_taxes,
             'utility_costs': this.utility_costs,
             'utility_allowance': this.utility_allowance,
-            'mandatory_standard_utility_allowances': this.mandatory_standard_utility_allowances,
             'standard_utility_allowances': this.standard_utility_allowances,
         }).calculate();
 

@@ -10,7 +10,6 @@ export class ShelterDeduction {
         this.household_size = inputs.household_size;
         this.utility_costs = inputs.utility_costs;
         this.utility_allowance = inputs.utility_allowance;
-        this.mandatory_standard_utility_allowances = inputs.mandatory_standard_utility_allowances;
         this.standard_utility_allowances = inputs.standard_utility_allowances;
     }
 
@@ -160,14 +159,6 @@ export class ShelterDeduction {
                     };
                 }
             }
-        }
-
-        // State without Standard Utility Allowances
-        if (!this.mandatory_standard_utility_allowances) {
-            return {
-                'result': this.utility_costs,
-                'explanation': `In this case, the household has utility costs of $${this.utility_costs}, so total shelter plus utilities costs come to $${this.base_shelter_costs + this.utility_costs}.`
-            };
         }
 
         // State with Standard Utility Allowances, utility allowance claimed

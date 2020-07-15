@@ -12,7 +12,6 @@ type StateYearOption = {
 type IndividualStateOption = {
     uses_bbce: boolean;
     child_support_payments_treatment: string;
-    mandatory_standard_utility_allowances?: boolean;
     gross_income_limit_factor?: number;
     resource_limit_elderly_or_disabled?: ?number;
     resource_limit_elderly_or_disabled_income_twice_fpl?: ?number;
@@ -25,7 +24,6 @@ export const STATE_OPTIONS /*: StateOptions */ = {
         '2020': {
             'child_support_payments_treatment': 'EXCLUDE',
             'gross_income_limit_factor': 1.65,
-            'mandatory_standard_utility_allowances': true,
             'resource_limit_elderly_or_disabled': null,
             'resource_limit_elderly_or_disabled_income_twice_fpl': 3500,
             'resource_limit_non_elderly_or_disabled': null,
@@ -46,7 +44,6 @@ export const STATE_OPTIONS /*: StateOptions */ = {
     'VA': {
         '2020': {
             'child_support_payments_treatment': 'EXCLUDE', // This matches materials provided by VPLC and VA DSS but not the latest USDA State Options Report
-            'mandatory_standard_utility_allowances': false,
             'standard_medical_deduction': true,
             'standard_medical_deduction_amount': 200,
             'standard_medical_deduction_ceiling': 235,
