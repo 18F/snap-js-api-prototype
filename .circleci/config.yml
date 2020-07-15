@@ -25,4 +25,4 @@ jobs:
           command: npm run lint
       - run:
           name: Scan dependencies
-          command: npm audit
+          command: npm audit --audit-level=moderate

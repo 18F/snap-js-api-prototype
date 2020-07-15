@@ -75,9 +75,9 @@ export class SnapEstimate {
     net_income: number;
 
     // Outputs
-    estimated_benefit: number;
-    estimated_benefit_start_of_month: ?number;
     estimated_eligibility: boolean;
+    estimated_monthly_benefit: number;
+    emergency_allotment_estimated_benefit: ?number;
     */
 
     constructor(inputs /*: SnapEstimateInputs */) {
@@ -163,8 +163,8 @@ export class SnapEstimate {
         });
 
         const benefit_amount_calculation = benefit_amount_estimate.calculate();
-        this.estimated_benefit = benefit_amount_calculation.result;
-        this.estimated_benefit_start_of_month = benefit_amount_calculation.result_start_of_month;
+        this.estimated_monthly_benefit = benefit_amount_calculation.result;
+        this.emergency_allotment_estimated_benefit = benefit_amount_calculation.emergency_allotment_estimated_benefit;
 
         const eligibility_factors/*: Array<Array<string>> */ = [
             gross_income_calculation,
@@ -174,8 +174,8 @@ export class SnapEstimate {
 
         return {
             'status': 'OK',
-            'estimated_benefit': this.estimated_benefit,
-            'estimated_benefit_start_of_month': this.estimated_benefit_start_of_month, // If emergency allotments are in effect, a household may receive their regular benefit at the start of the month and the remainder later in the month. This value may be null.
+            'estimated_monthly_benefit': this.estimated_monthly_benefit,
+            'emergency_allotment_estimated_benefit': this.emergency_allotment_estimated_benefit, // If emergency allotments are in effect, a household may receive a higher benefit total. This value may be null if emergency allotments are not in effect.
             'estimated_eligibility': this.estimated_eligibility,
             'eligibility_factors': eligibility_factors,
             'state_website': this.state_website,

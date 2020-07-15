@@ -1,6 +1,6 @@
 {
   "name": "snap-js-rules",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A SNAP eligibility calculator in JavaScript",
   "private": "true",
   "dependencies": {},

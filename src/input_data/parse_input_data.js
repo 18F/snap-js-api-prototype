@@ -70,11 +70,15 @@ export class ParseInputs {
     }
 
     handle_required_integer_input(input_key) {
-        const input_value = this.inputs[input_key];
+        let input_value = this.inputs[input_key];
 
         if (input_value === null || input_value === undefined) {
             this.errors.push(`Missing required input: ${input_key}`);
             return false;
+        }
+
+        if (typeof input_value === 'string') {
+            input_value = input_value.replace(/,/g, '');
         }
 
         const try_parse_int = parseInt(input_value);
