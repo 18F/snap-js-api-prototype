@@ -158,3 +158,50 @@ Feature: Virginia scenarios, no EA waiver
     When we run the benefit estimator...
       Then we find the family is likely eligible
       Then we find the estimated benefit is $124 per month
+
+
+  # STANDARD UTILITY ALLOWANCE #
+
+  Scenario:
+    Given a 1-person household
+    And the household has other income of $1200 monthly
+    And the household has rent or mortgage costs of $1200 monthly
+    And the household pays for AC or heat, or otherwise qualifies for AC-heat utility allowance
+    When we run the benefit estimator...
+      Then we find the family is likely eligible
+      Then we find the estimated benefit is $55 per month
+
+  # Household already receiving the max excess shelter deduction, so no
+  # increase in estimated benefit amount after adding utility allowance:
+  Scenario:
+    Given a 1-person household
+    And the household has other income of $1200 monthly
+    And the household has rent or mortgage costs of $1200 monthly
+    And the household pays for AC or heat, or otherwise qualifies for AC-heat utility allowance
+    When we run the benefit estimator...
+      Then we find the family is likely eligible
+      Then we find the estimated benefit is $55 per month
+
+  # Household with elderly or disabled household member (no limit to shelter deduction)
+  # that does not have a heating/cooling utility allowance:
+  Scenario:
+    Given a 1-person household
+    And the household does include an elderly or disabled member
+    And the household has other income of $1200 monthly
+    And the household has rent or mortgage costs of $1200 monthly
+    When we run the benefit estimator...
+      Then we find the family is likely eligible
+      Then we find the estimated benefit is $89 per month
+
+  # Household with elderly or disabled household member (no limit to shelter deduction)
+  # that has a heating/cooling utility allowance, benefit increases in proportion
+  # to the VA standard utility allowance:
+  Scenario:
+    Given a 1-person household
+    And the household does include an elderly or disabled member
+    And the household has other income of $1200 monthly
+    And the household has rent or mortgage costs of $1200 monthly
+    And the household pays for AC or heat, or otherwise qualifies for AC-heat utility allowance
+    When we run the benefit estimator...
+      Then we find the family is likely eligible
+      Then we find the estimated benefit is $180 per month
