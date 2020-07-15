@@ -21,7 +21,7 @@
   },
   "browserslist": [
     "> 0.25%",
-    "ie 6"
+    "ie 11"
   ],
   "scripts": {
     "feature-test": "./node_modules/.bin/cucumber-js --require-module @babel/core --require-module @babel/register --require-module @babel/preset-env features",
