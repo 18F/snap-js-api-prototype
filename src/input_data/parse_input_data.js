@@ -131,10 +131,10 @@ export class ParseInputs {
 
         const input_value = this.inputs[input_key];
 
-        // Convert null, undefined, '', NaN values to null:
+        // Convert null, undefined, '', NaN values to 'NONE':
         // https://developer.mozilla.org/en-US/docs/Glossary/Falsy
         if (!input_value) {
-            this.inputs[input_key] = null;
+            this.inputs[input_key] = 'NONE';
             return true;
         }
 
