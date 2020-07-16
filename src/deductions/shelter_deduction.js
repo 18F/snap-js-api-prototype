@@ -8,7 +8,6 @@ export class ShelterDeduction {
         this.household_includes_elderly_or_disabled = inputs.household_includes_elderly_or_disabled;
         this.state_or_territory = inputs.state_or_territory;
         this.household_size = inputs.household_size;
-        this.utility_costs = inputs.utility_costs;
         this.utility_allowance = inputs.utility_allowance;
         this.standard_utility_allowances = inputs.standard_utility_allowances;
     }

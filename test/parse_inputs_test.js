@@ -43,7 +43,7 @@ describe('ParseInputs', () => {
             'rent_or_mortgage': 0,
             'resources': 0,
             'state_or_territory': 'IL',
-            'utility_costs': 0,
+            'utility_allowance': 'NONE',
         });
     });
 
@@ -72,7 +72,7 @@ describe('ParseInputs', () => {
             'rent_or_mortgage': 0,
             'resources': 1001,
             'state_or_territory': 'IL',
-            'utility_costs': 0,
+            'utility_allowance': 'NONE',
         });
     });
 
@@ -102,7 +102,7 @@ describe('ParseInputs', () => {
             'rent_or_mortgage': 0,
             'resources': 1001,
             'state_or_territory': 'IL',
-            'utility_costs': 0,
+            'utility_allowance': 'NONE',
         });
     });
 
@@ -132,7 +132,7 @@ describe('ParseInputs', () => {
             'rent_or_mortgage': 0,
             'resources': 1001,
             'state_or_territory': 'IL',
-            'utility_costs': 0,
+            'utility_allowance': 'NONE',
         });
     });
 
@@ -161,7 +161,7 @@ describe('ParseInputs', () => {
             'rent_or_mortgage': 0,
             'resources': 0,
             'state_or_territory': 'IL',
-            'utility_costs': 0,
+            'utility_allowance': 'NONE',
         });
     });
 
@@ -262,7 +262,7 @@ describe('ParseInputs', () => {
             'homeowners_insurance_and_taxes': 0,
             'medical_expenses_for_elderly_or_disabled': 0,
             'rent_or_mortgage': 0,
-            'utility_costs': 0,
+            'utility_allowance': 'NONE',
         });
     });
 
@@ -293,7 +293,7 @@ describe('ParseInputs', () => {
             'homeowners_insurance_and_taxes': 0,
             'medical_expenses_for_elderly_or_disabled': 0,
             'rent_or_mortgage': 0,
-            'utility_costs': 0,
+            'utility_allowance': 'NONE',
         });
     });
 });

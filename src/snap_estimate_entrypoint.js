@@ -16,7 +16,6 @@ interface SnapEntrypointInputs {
     rent_or_mortgage?: ?number;
     homeowners_insurance_and_taxes?: ?number;
     utility_allowance?: ?string;
-    utility_costs?: ?number;
     court_ordered_child_support_payments?: ?number;
     use_emergency_allotment: boolean;
 }

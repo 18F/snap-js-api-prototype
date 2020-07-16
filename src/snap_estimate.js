@@ -29,7 +29,6 @@ interface SnapEstimateInputs {
     rent_or_mortgage?: ?number;
     homeowners_insurance_and_taxes?: ?number;
     utility_allowance?: ?string;
-    utility_costs?: ?number;
     court_ordered_child_support_payments?: ?number;
     use_emergency_allotment: boolean;
 }
@@ -51,7 +50,6 @@ export class SnapEstimate {
     rent_or_mortgage: ?number;
     homeowners_insurance_and_taxes: ?number;
     utility_allowance: ?string;
-    utility_costs: ?number;
 
     // State Options
     state_options: Object;
@@ -94,7 +92,6 @@ export class SnapEstimate {
         this.use_emergency_allotment = inputs.use_emergency_allotment;
         this.rent_or_mortgage = inputs.rent_or_mortgage;
         this.homeowners_insurance_and_taxes = inputs.homeowners_insurance_and_taxes;
-        this.utility_costs = inputs.utility_costs;
         this.utility_allowance = inputs.utility_allowance;
 
         const state_options = STATE_OPTIONS[this.state_or_territory][2020];
@@ -229,7 +226,6 @@ export class SnapEstimate {
             'standard_medical_deduction_ceiling': this.standard_medical_deduction_ceiling,
             'rent_or_mortgage': this.rent_or_mortgage,
             'homeowners_insurance_and_taxes': this.homeowners_insurance_and_taxes,
-            'utility_costs': this.utility_costs,
             'utility_allowance': this.utility_allowance,
             'standard_utility_allowances': this.standard_utility_allowances,
             'child_support_payments_treatment': this.child_support_payments_treatment,
