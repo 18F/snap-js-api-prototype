@@ -78,10 +78,6 @@ Given('the household is not billed separately for any utilities', function () {
     this.utility_allowance = 'NONE';
 });
 
-Given('the household has utility costs of ${int} monthly', function (utility_costs) {
-  this.utility_costs = utility_costs;
-});
-
 When('we run the benefit estimator...', function () {
   const snap_estimator = new SnapEstimateEntrypoint({
     'household_includes_elderly_or_disabled': this.household_includes_elderly_or_disabled,

@@ -43,7 +43,7 @@ describe('ParseInputs', () => {
             'rent_or_mortgage': 0,
             'resources': 0,
             'state_or_territory': 'IL',
-            'utility_costs': 0,
+            'utility_allowance': 'NONE',
         });
     });
 
@@ -72,7 +72,7 @@ describe('ParseInputs', () => {
             'rent_or_mortgage': 0,
             'resources': 1001,
             'state_or_territory': 'IL',
-            'utility_costs': 0,
+            'utility_allowance': 'NONE',
         });
     });
 
@@ -102,7 +102,7 @@ describe('ParseInputs', () => {
             'rent_or_mortgage': 0,
             'resources': 1001,
             'state_or_territory': 'IL',
-            'utility_costs': 0,
+            'utility_allowance': 'NONE',
         });
     });
 
@@ -132,7 +132,7 @@ describe('ParseInputs', () => {
             'rent_or_mortgage': 0,
             'resources': 1001,
             'state_or_territory': 'IL',
-            'utility_costs': 0,
+            'utility_allowance': 'NONE',
         });
     });
 
@@ -161,7 +161,7 @@ describe('ParseInputs', () => {
             'rent_or_mortgage': 0,
             'resources': 0,
             'state_or_territory': 'IL',
-            'utility_costs': 0,
+            'utility_allowance': 'NONE',
         });
     });
 
@@ -216,8 +216,7 @@ describe('ParseInputs', () => {
         assert.equal(parser.inputs_valid(), true);
     });
 
-
-    it('should add an errors on invalid utility allowance value', () => {
+    it('should add an error on invalid utility allowance value', () => {
         const inputs = {
             'state_or_territory': 'IL',
             'household_includes_elderly_or_disabled': 'false',
@@ -234,6 +233,68 @@ describe('ParseInputs', () => {
         assert.deepEqual(parser.errors, [
             'Unknown standard utility allowance: 7'
         ]);
+    });
+
+    it('should convert a null utility allowance value to "NONE"', () => {
+        const inputs = {
+            'state_or_territory': 'IL',
+            'household_includes_elderly_or_disabled': 'false',
+            'monthly_non_job_income': '0',
+            'monthly_job_income': '0',
+            'household_size': '1',
+            'resources': '0',
+            'utility_allowance': null,
+        };
+
+        const parser = new ParseInputs(inputs);
+
+        assert.equal(parser.inputs_valid(), true);
+        assert.deepEqual(parser.inputs, {
+            'state_or_territory': 'IL',
+            'household_includes_elderly_or_disabled': false,
+            'monthly_non_job_income': 0,
+            'monthly_job_income': 0,
+            'household_size': 1,
+            'resources': 0,
+            'utility_allowance': 'NONE',
+            'court_ordered_child_support_payments': 0,
+            'dependent_care_costs': 0,
+            'homeowners_insurance_and_taxes': 0,
+            'medical_expenses_for_elderly_or_disabled': 0,
+            'rent_or_mortgage': 0,
+            'utility_allowance': 'NONE',
+        });
+    });
+
+    it('should convert an undefined utility allowance value to "NONE"', () => {
+        const inputs = {
+            'state_or_territory': 'IL',
+            'household_includes_elderly_or_disabled': 'false',
+            'monthly_non_job_income': '0',
+            'monthly_job_income': '0',
+            'household_size': '1',
+            'resources': '0',
+            'utility_allowance': undefined,
+        };
+
+        const parser = new ParseInputs(inputs);
+
+        assert.equal(parser.inputs_valid(), true);
+        assert.deepEqual(parser.inputs, {
+            'state_or_territory': 'IL',
+            'household_includes_elderly_or_disabled': false,
+            'monthly_non_job_income': 0,
+            'monthly_job_income': 0,
+            'household_size': 1,
+            'resources': 0,
+            'utility_allowance': 'NONE',
+            'court_ordered_child_support_payments': 0,
+            'dependent_care_costs': 0,
+            'homeowners_insurance_and_taxes': 0,
+            'medical_expenses_for_elderly_or_disabled': 0,
+            'rent_or_mortgage': 0,
+            'utility_allowance': 'NONE',
+        });
     });
 });
 

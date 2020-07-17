@@ -19,9 +19,7 @@ export class NetIncome {
         this.standard_medical_deduction_ceiling = inputs.standard_medical_deduction_ceiling;
         this.rent_or_mortgage = inputs.rent_or_mortgage;
         this.homeowners_insurance_and_taxes = inputs.homeowners_insurance_and_taxes;
-        this.utility_costs = inputs.utility_costs;
         this.utility_allowance = inputs.utility_allowance;
-        this.mandatory_standard_utility_allowances = inputs.mandatory_standard_utility_allowances;
         this.standard_utility_allowances = inputs.standard_utility_allowances;
         this.child_support_payments_treatment = inputs.child_support_payments_treatment;
         this.court_ordered_child_support_payments = inputs.court_ordered_child_support_payments;
@@ -106,9 +104,7 @@ export class NetIncome {
             'household_includes_elderly_or_disabled': this.household_includes_elderly_or_disabled,
             'rent_or_mortgage': this.rent_or_mortgage,
             'homeowners_insurance_and_taxes': this.homeowners_insurance_and_taxes,
-            'utility_costs': this.utility_costs,
             'utility_allowance': this.utility_allowance,
-            'mandatory_standard_utility_allowances': this.mandatory_standard_utility_allowances,
             'standard_utility_allowances': this.standard_utility_allowances,
         }).calculate();
 

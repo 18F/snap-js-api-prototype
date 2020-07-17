@@ -47,7 +47,6 @@ export class ParseInputs {
             'court_ordered_child_support_payments',
             'rent_or_mortgage',
             'homeowners_insurance_and_taxes',
-            'utility_costs',
         ];
 
         const UTILITY_ALLOWANCE_INPUT = 'utility_allowance';
@@ -126,15 +125,16 @@ export class ParseInputs {
     handle_utility_allowance_input(input_key) {
         // Check if the key exists in the inputs object
         if (!(input_key in this.inputs)) {
+            this.inputs[input_key] = 'NONE';
             return true;
         }
 
         const input_value = this.inputs[input_key];
 
-        // Utility allowance can be blank or '', if the household is in a state
-        // that uses raw utility costs instead of standard utility allowances.
-        if (input_value === null || input_value === '') {
-            this.inputs[input_key] = null;
+        // Convert null, undefined, '', NaN values to 'NONE':
+        // https://developer.mozilla.org/en-US/docs/Glossary/Falsy
+        if (!input_value) {
+            this.inputs[input_key] = 'NONE';
             return true;
         }
 
