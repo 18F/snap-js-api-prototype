@@ -38,7 +38,6 @@ export const STATE_OPTIONS /*: StateOptions */ = {
             },
             'use_emergency_allotment': true,
             'uses_bbce': true,
-            'website': 'https://abe.illinois.gov/abe/access/'
         }
     },
     'VA': {
@@ -49,23 +48,12 @@ export const STATE_OPTIONS /*: StateOptions */ = {
             'standard_medical_deduction_ceiling': 235,
             'use_emergency_allotment': true,
             'uses_bbce': false,
-            'website': 'https://commonhelp.virginia.gov/',
             'standard_utility_allowances': {
                 'HEATING_AND_COOLING': {
                     'below_four': 303,
                     'four_or_more': 379,
-                },
-            },
-            'next_steps': [
-                {
-                    'url': 'https://commonhelp.virginia.gov/',
-                    'name': 'Apply online using CommonHelp.',
-                },
-                {
-                    'url': 'https://www.dss.virginia.gov/localagency/index.cgi',
-                    'name': 'Apply at a local department near you.',
                 }
-            ]
+            }
         }
     }
 };

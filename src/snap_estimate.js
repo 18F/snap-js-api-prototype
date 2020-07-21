@@ -63,7 +63,6 @@ export class SnapEstimate {
     standard_medical_deduction_amount: number;
     standard_medical_deduction_ceiling: number;
     standard_utility_allowances: Object;
-    state_website: string;
 
     // Calculated
     gross_income_calculation: Object;
@@ -118,7 +117,6 @@ export class SnapEstimate {
         this.standard_medical_deduction_amount = state_options['standard_medical_deduction_amount'];
         this.standard_medical_deduction_ceiling = state_options['standard_medical_deduction_ceiling'];
         this.standard_utility_allowances = state_options['standard_utility_allowances'];
-        this.state_website = state_options['website'];
 
         this.net_monthly_income_limit = new FetchIncomeLimit({
             'state_or_territory': this.state_or_territory,
@@ -173,7 +171,6 @@ export class SnapEstimate {
             'emergency_allotment_estimated_benefit': this.emergency_allotment_estimated_benefit, // If emergency allotments are in effect, a household may receive a higher benefit total. This value may be null if emergency allotments are not in effect.
             'estimated_eligibility': this.estimated_eligibility,
             'eligibility_factors': eligibility_factors,
-            'state_website': this.state_website,
         };
     }
 

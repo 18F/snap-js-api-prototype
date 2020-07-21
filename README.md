@@ -13,7 +13,6 @@ This prototype SNAP API calculates a household's estimated eligibility for the S
 + an estimate of that household's SNAP eligibility
 + an estimated benefit amount
 + an explanation of the logic behind the API's decision-making
-+ a link to a state website where a household could apply for SNAP
 
 # Development
 
