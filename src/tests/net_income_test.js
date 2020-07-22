@@ -25,7 +25,7 @@ export class NetIncomeTest {
             : 'does not meet';
 
         const result_explanation = (
-            `Since the household net income is $${this.net_income}, this household <strong>${result_in_words}</strong> the net income test.`
+            `Since the household net income (gross income minus deductions for expenses) is $${this.net_income}, this household <strong>${result_in_words}</strong> the net income test.`
         );
         explanation.push(result_explanation);
 
