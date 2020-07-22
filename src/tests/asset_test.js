@@ -46,6 +46,7 @@ export class AssetTest {
             'result': below_resource_limit,
             'explanation': explanation,
             'sort_order': 4,
+            'type': 'test'
         };
     }
 }

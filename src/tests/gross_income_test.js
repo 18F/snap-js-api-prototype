@@ -52,6 +52,7 @@ class GrossIncomeTest {
             'result': below_gross_income_limit,
             'explanation': explanation,
             'sort_order': 2,
+            'type': 'test'
         };
     }
 }

@@ -73,7 +73,8 @@ export class GrossIncome {
             'name': 'Gross Income',
             'result': monthly_income,
             'explanation': explanation,
-            'sort_order': 0
+            'sort_order': 0,
+            'type': 'income',
         };
     }
 }

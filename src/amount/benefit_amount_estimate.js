@@ -108,6 +108,7 @@ export class BenefitAmountEstimate {
             'result': estimated_benefit,
             'emergency_allotment_estimated_benefit': max_allotment,
             'explanation': explanation,
+            'type': 'amount'
         };
     }
 }

@@ -138,6 +138,7 @@ export class NetIncome {
             'result': result,
             'explanation': explanation,
             'sort_order': 1,
+            'type': 'income',
         };
     }
 }

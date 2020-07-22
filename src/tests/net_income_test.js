@@ -34,6 +34,7 @@ export class NetIncomeTest {
             'result': below_net_income_limit,
             'explanation': explanation,
             'sort_order': 3,
+            'type': 'test'
         };
     }
 }
