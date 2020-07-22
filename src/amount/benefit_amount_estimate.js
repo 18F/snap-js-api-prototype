@@ -18,10 +18,11 @@ export class BenefitAmountEstimate {
     calculate() {
         if (!this.is_eligible) {
             return {
-                'name': 'Estimated Benefit Calculation',
+                'name': 'Benefit Amount',
                 'result': 0,
                 'explanation': ['Likely not eligible for SNAP.'],
-                'sort_order': 5
+                'sort_order': 5,
+                'type': 'amount',
             };
         }
 
@@ -87,6 +88,7 @@ export class BenefitAmountEstimate {
                 'sort_order': 5,
                 'result': estimated_benefit,
                 'explanation': explanation,
+                'type': 'amount',
             };
         }
 

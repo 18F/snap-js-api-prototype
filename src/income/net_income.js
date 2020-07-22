@@ -38,6 +38,7 @@ export class NetIncome {
                 'result': 0,
                 'explanation': ['Since the household does not have income, net income is zero.'],
                 'sort_order': 1,
+                'type': 'income',
             };
         }
 

@@ -48,7 +48,8 @@ export class GrossIncome {
             'name': 'Gross Income',
             'result': monthly_income_minus_child_support,
             'explanation': explanation,
-            'sort_order': 0
+            'sort_order': 0,
+            'type': 'income',
         };
     }
 

@@ -18,6 +18,7 @@ export class AssetTest {
                     `${this.state_or_territory} does not have an asset test for SNAP eligibility.`
                 ],
                 'sort_order': 4,
+                'type': 'test'
             };
         }
 
