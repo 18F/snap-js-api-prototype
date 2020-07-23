@@ -30,7 +30,6 @@ export class ParseInputs {
             'household_size',
             'monthly_job_income',
             'monthly_non_job_income',
-            'resources',
         ];
 
         const REQUIRED_BOOLEAN_INPUTS = [
@@ -42,6 +41,7 @@ export class ParseInputs {
         ];
 
         const OPTIONAL_NUMBER_INPUTS = [
+            'resources',
             'dependent_care_costs',
             'medical_expenses_for_elderly_or_disabled',
             'court_ordered_child_support_payments',
