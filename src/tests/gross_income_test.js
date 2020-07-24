@@ -24,6 +24,7 @@ class GrossIncomeTest {
                     'Households with an elderly or disabled member do not need to meet the gross income test.'
                 ],
                 'sort_order': 2,
+                'type': 'test',
             };
         }
 
@@ -52,6 +53,7 @@ class GrossIncomeTest {
             'result': below_gross_income_limit,
             'explanation': explanation,
             'sort_order': 2,
+            'type': 'test'
         };
     }
 }
