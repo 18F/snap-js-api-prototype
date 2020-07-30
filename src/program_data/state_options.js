@@ -36,7 +36,6 @@ export const STATE_OPTIONS /*: StateOptions */ = {
                 'PHONE': 30,
                 'SINGLE_UTILITY_ALLOWANCE': 74
             },
-            'use_emergency_allotment': true,
             'uses_bbce': true,
         }
     },
@@ -46,7 +45,6 @@ export const STATE_OPTIONS /*: StateOptions */ = {
             'standard_medical_deduction': true,
             'standard_medical_deduction_amount': 200,
             'standard_medical_deduction_ceiling': 235,
-            'use_emergency_allotment': true,
             'uses_bbce': false,
             'standard_utility_allowances': {
                 'HEATING_AND_COOLING': {
