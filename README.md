@@ -4,7 +4,7 @@ This is a sketchpad prototyping repo being used by 18F's [Eligibility APIs Initi
 
 :warning: ***None of the eligibility rules expressed in this repository should be considered official interpretations of SNAP rules or policy. This is a sketchpad prototyping repo only.*** :warning:
 
-# What does this do?
+# What does this API do?
 
 This prototype SNAP API calculates a household's estimated eligibility for the SNAP program. The API accepts inputs about a household and returns the following:
 
@@ -12,15 +12,15 @@ This prototype SNAP API calculates a household's estimated eligibility for the S
 + an estimated benefit amount
 + an explanation of the logic behind the API's decision-making
 
-# What problems does this aim to solve?
+## What problem does this aim to solve?
 
 * As a developer building a project that requires SNAP eligibility logic, I want to pull from an existing source of SNAP eligibility logic rather than reinventing for my own use case.
 
-# Guides and more documentation
-
-See the [project wiki](https://github.com/18f/snap-js-api-prototype/wiki) for guides and more project documentation, including API documentation.
-
 # Development
+
+## Guides and more documentation
+
+See the [project wiki](https://github.com/18f/snap-js-api-prototype/wiki) for guides and project documentation, including API documentation.
 
 ### Commands
 
