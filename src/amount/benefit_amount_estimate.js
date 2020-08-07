@@ -38,9 +38,7 @@ export class BenefitAmountEstimate {
             'household_size': this.household_size,
         }).calculate();
 
-        const max_allotment_pdf_url = 'https://fns-prod.azureedge.net/sites/default/files/media/file/FY20-Maximum-Allotments-Deductions.pdf';
-        const max_allotment_explanation = `The maximum allotment for this household is $${max_allotment}. <a class='why why-small' href='${max_allotment_pdf_url}' target='_blank'>why?</a>`;
-
+        const max_allotment_explanation = `The maximum allotment for this household is $${max_allotment}.`;
         explanation.push(max_allotment_explanation);
 
         const thirty_percent_net_income = Math.round(this.net_income * 0.3);
@@ -62,8 +60,7 @@ export class BenefitAmountEstimate {
         if (min_allotment && min_allotment > estimated_benefit) {
             estimated_benefit = min_allotment;
 
-            const min_allotment_pdf_url = 'https://fns-prod.azureedge.net/sites/default/files/media/file/FY20-Minimum-Allotments.pdf';
-            const min_allotment_explanation = `There is a minimum monthly allotmnet for this household of $${min_allotment}. <a class='why why-small' href='${min_allotment_pdf_url}' target='_blank'>why?</a>`;
+            const min_allotment_explanation = `There is a minimum monthly allotmnet for this household of $${min_allotment}.`;
             explanation.push(min_allotment_explanation);
             const min_allotment_applied_explanation = (
                 `Since the calculated benefit amount would be below the minimum allotment, apply the minimum allotment amount of $${min_allotment} instead.`

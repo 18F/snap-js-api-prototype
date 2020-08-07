@@ -36,9 +36,7 @@ class GrossIncomeTest {
             this.gross_monthly_income_limit > this.gross_income
         );
 
-        const income_limits_pdf_url = 'https://fns-prod.azureedge.net/sites/default/files/media/file/FY20-Income-Eligibility-Standards.pdf';
-        const gross_monthly_income_limit_explanation = `The gross monthly income limit is $${this.gross_monthly_income_limit}. <a class='why why-small' href='${income_limits_pdf_url}' target='_blank'>why?</a>`;
-
+        const gross_monthly_income_limit_explanation = `The gross monthly income limit is $${this.gross_monthly_income_limit}.`;
         explanation.push(gross_monthly_income_limit_explanation);
 
         const result_in_words = (below_gross_income_limit)
