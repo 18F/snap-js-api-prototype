@@ -30,7 +30,6 @@ export class ParseInputs {
             'household_size',
             'monthly_job_income',
             'monthly_non_job_income',
-            'resources',
         ];
 
         const REQUIRED_BOOLEAN_INPUTS = [
@@ -42,6 +41,7 @@ export class ParseInputs {
         ];
 
         const OPTIONAL_NUMBER_INPUTS = [
+            'resources',
             'dependent_care_costs',
             'medical_expenses_for_elderly_or_disabled',
             'court_ordered_child_support_payments',
@@ -49,26 +49,25 @@ export class ParseInputs {
             'homeowners_insurance_and_taxes',
         ];
 
-        const UTILITY_ALLOWANCE_INPUT = 'utility_allowance';
-
         for (const input_key of REQUIRED_NUMBER_INPUTS) {
-            this.handle_required_integer_input(input_key);
+            this.handle_required_number_input(input_key);
         }
         for (const input_key of REQUIRED_BOOLEAN_INPUTS) {
             this.handle_required_bool_input(input_key);
         }
         for (const input_key of OPTIONAL_NUMBER_INPUTS) {
-            this.handle_optional_integer_input(input_key);
+            this.handle_optional_number_input_default_zero(input_key);
         }
         for (const input_key of OPTIONAL_BOOLEAN_INPUTS) {
             this.handle_optional_bool_input(input_key);
         }
-        this.handle_utility_allowance_input(UTILITY_ALLOWANCE_INPUT);
+        this.handle_utility_allowance_input('utility_allowance');
+        this.handle_target_year_input('target_year');
 
         return this.inputs;
     }
 
-    handle_required_integer_input(input_key) {
+    handle_required_number_input(input_key) {
         let input_value = this.inputs[input_key];
 
         if (input_value === null || input_value === undefined) {
@@ -162,7 +161,7 @@ export class ParseInputs {
         }
     }
 
-    handle_optional_integer_input(input_key) {
+    handle_optional_number_input_default_zero(input_key) {
         // Check if the key exists in the inputs object
         if (!(input_key in this.inputs)) {
             this.inputs[input_key] = 0;
@@ -173,6 +172,35 @@ export class ParseInputs {
 
         if (input_value === null || input_value === '') {
             this.inputs[input_key] = 0;
+            return true;
+        }
+
+        if (typeof input_value === 'number') {
+            return true;
+        }
+
+        const try_parse_int = parseInt(input_value);
+
+        if (isNaN(try_parse_int)) {
+            this.errors.push(`Value for ${input_key} is not a number.`);
+            return false;
+        }
+
+        this.inputs[input_key] = try_parse_int;
+        return true;
+    }
+
+    handle_target_year_input(input_key) {
+        // Check if the key exists in the inputs object
+        if (!(input_key in this.inputs)) {
+            this.inputs[input_key] = null;
+            return true;
+        }
+
+        const input_value = this.inputs[input_key];
+
+        if (input_value === null || input_value === '' || input_value === undefined) {
+            this.inputs[input_key] = null;
             return true;
         }
 

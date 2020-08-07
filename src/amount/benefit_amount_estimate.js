@@ -13,6 +13,7 @@ export class BenefitAmountEstimate {
         this.is_eligible = inputs.is_eligible;
         this.net_income = inputs.net_income;
         this.use_emergency_allotment = inputs.use_emergency_allotment;
+        this.target_year = inputs.target_year;
     }
 
     calculate() {
@@ -36,6 +37,7 @@ export class BenefitAmountEstimate {
         const max_allotment = new FetchMaxAllotment({
             'state_or_territory': this.state_or_territory,
             'household_size': this.household_size,
+            'target_year': this.target_year,
         }).calculate();
 
         const max_allotment_pdf_url = 'https://fns-prod.azureedge.net/sites/default/files/media/file/FY20-Maximum-Allotments-Deductions.pdf';
