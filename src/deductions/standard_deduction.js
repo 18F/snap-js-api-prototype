@@ -14,10 +14,8 @@ export class StandardDeduction {
 
         const result = deductions_api.calculate();
 
-        const standard_deduction_pdf_url = 'https://fns-prod.azureedge.net/sites/default/files/media/file/FY20-Maximum-Allotments-Deductions.pdf';
-
         const explanation = [
-            `Next, we need to take into account deductions. We start with a standard deduction of $${result}. <a class='why why-small' href='${standard_deduction_pdf_url}' target='_blank'>why?</a>`
+            `Next, we need to take into account deductions. We start with a standard deduction of $${result}.`
         ];
 
         return {

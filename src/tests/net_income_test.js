@@ -14,9 +14,8 @@ export class NetIncomeTest {
         );
         explanation.push(explanation_intro);
 
-        const income_limits_pdf_url = 'https://fns-prod.azureedge.net/sites/default/files/media/file/FY20-Income-Eligibility-Standards.pdf';
         const net_monthly_income_limit_explanation = (
-            `The net monthly income limit is $${this.net_monthly_income_limit}. <a class='why why-small' href='${income_limits_pdf_url}' target='_blank'>why?</a>`
+            `The net monthly income limit is $${this.net_monthly_income_limit}.`
         );
         explanation.push(net_monthly_income_limit_explanation);
 
