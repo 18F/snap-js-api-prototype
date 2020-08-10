@@ -207,14 +207,16 @@ export class ParseInputs {
             return true;
         }
 
-        if (typeof input_value === 'number') {
-            return true;
-        }
-
         const try_parse_int = parseInt(input_value);
 
         if (isNaN(try_parse_int)) {
             this.errors.push(`Value for ${input_key} is not a number.`);
+            return false;
+        }
+
+        // Only support allowlist of years. Currently only 2020 is supported.
+        if ([2020].indexOf(try_parse_int) === -1) {
+            this.errors.push(`Value for ${input_key} is not supported year.`);
             return false;
         }
 
