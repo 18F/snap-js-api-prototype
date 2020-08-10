@@ -7,6 +7,7 @@ export class FetchMaxAllotment {
     constructor(inputs) {
         this.state_or_territory = inputs.state_or_territory;
         this.household_size = inputs.household_size;
+        this.target_year = inputs.target_year;
     }
 
     state_lookup_key() {
@@ -26,7 +27,7 @@ export class FetchMaxAllotment {
 
     calculate() {
         const state_lookup_key = this.state_lookup_key();
-        const scale = MAX_ALLOTMENTS[state_lookup_key][2020];
+        const scale = MAX_ALLOTMENTS[state_lookup_key][this.target_year];
 
         if (0 < this.household_size && this.household_size < 9) {
             return scale[this.household_size];

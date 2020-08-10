@@ -58,6 +58,7 @@ export class BenefitAmountEstimate {
         const min_allotment = new FetchMinAllotment({
             'state_or_territory': this.state_or_territory,
             'household_size': this.household_size,
+            'target_year': this.target_year,
         }).calculate();
 
         // Check if minimum allotment should be applied.

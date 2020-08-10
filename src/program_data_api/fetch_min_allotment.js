@@ -9,6 +9,7 @@ export class FetchMinAllotment {
     constructor(inputs) {
         this.state_or_territory = inputs.state_or_territory;
         this.household_size = inputs.household_size;
+        this.target_year = inputs.target_year;
     }
 
     state_lookup_key() {
@@ -28,7 +29,7 @@ export class FetchMinAllotment {
 
     calculate() {
         const state_lookup_key = this.state_lookup_key();
-        const scale = MIN_ALLOTMENTS[state_lookup_key][2020];
+        const scale = MIN_ALLOTMENTS[state_lookup_key][this.target_year];
 
         // Minimum SNAP allotments are only defined for one- or two- person
         // households. A return value of None means no minimum, so the household
