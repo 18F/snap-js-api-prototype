@@ -191,7 +191,8 @@ export class ParseInputs {
     }
 
     handle_target_year_input(input_key) {
-        // Check if the key exists in the inputs object
+        // Check if the key exists in the inputs object.
+        // OK if key is not set; set to null and handle with default in src.
         if (!(input_key in this.inputs)) {
             this.inputs[input_key] = null;
             return true;
@@ -199,6 +200,8 @@ export class ParseInputs {
 
         const input_value = this.inputs[input_key];
 
+        // Check if value is undefined, null, or blank.
+        // OK if value is undefined, null, or blank; set to null and handle with default in src.
         if (input_value === null || input_value === '' || input_value === undefined) {
             this.inputs[input_key] = null;
             return true;
