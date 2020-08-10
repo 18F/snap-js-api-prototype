@@ -44,6 +44,7 @@ describe('ParseInputs', () => {
             'resources': 0,
             'state_or_territory': 'IL',
             'utility_allowance': 'NONE',
+            'target_year': null,
         });
     });
 
@@ -73,6 +74,7 @@ describe('ParseInputs', () => {
             'resources': 1001,
             'state_or_territory': 'IL',
             'utility_allowance': 'NONE',
+            'target_year': null,
         });
     });
 
@@ -103,6 +105,7 @@ describe('ParseInputs', () => {
             'resources': 1001,
             'state_or_territory': 'IL',
             'utility_allowance': 'NONE',
+            'target_year': null,
         });
     });
 
@@ -133,6 +136,7 @@ describe('ParseInputs', () => {
             'resources': 1001,
             'state_or_territory': 'IL',
             'utility_allowance': 'NONE',
+            'target_year': null,
         });
     });
 
@@ -162,6 +166,7 @@ describe('ParseInputs', () => {
             'resources': 0,
             'state_or_territory': 'IL',
             'utility_allowance': 'NONE',
+            'target_year': null,
         });
     });
 
@@ -209,6 +214,7 @@ describe('ParseInputs', () => {
             'household_size': '1',
             'resources': '0',
             'utility_allowance': 'HEATING_AND_COOLING',
+            'target_year': null,
         };
 
         const parser = new ParseInputs(inputs);
@@ -263,6 +269,7 @@ describe('ParseInputs', () => {
             'medical_expenses_for_elderly_or_disabled': 0,
             'rent_or_mortgage': 0,
             'utility_allowance': 'NONE',
+            'target_year': null,
         });
     });
 
@@ -294,6 +301,7 @@ describe('ParseInputs', () => {
             'medical_expenses_for_elderly_or_disabled': 0,
             'rent_or_mortgage': 0,
             'utility_allowance': 'NONE',
+            'target_year': null,
         });
     });
 });
