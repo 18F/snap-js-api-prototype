@@ -96,7 +96,7 @@ export class SnapEstimate {
         this.utility_allowance = inputs.utility_allowance;
         this.target_year = inputs.target_year || 2020;
 
-        const state_options = STATE_OPTIONS[this.state_or_territory][target_year];
+        const state_options = STATE_OPTIONS[this.state_or_territory][this.target_year];
         const uses_bbce = state_options.uses_bbce;
 
         this.gross_income_limit_factor = (uses_bbce)
