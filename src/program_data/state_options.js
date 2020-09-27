@@ -74,6 +74,20 @@ export const STATE_OPTIONS /*: StateOptions */ = {
                     'four_or_more': 379,
                 }
             }
+        },
+        '2021': {
+            // Same as 2020:
+            'uses_bbce': false,
+            'child_support_payments_treatment': 'EXCLUDE',
+            'standard_medical_deduction': true,
+            'standard_medical_deduction_amount': 200,
+            'standard_medical_deduction_ceiling': 235,
+            'standard_utility_allowances': {
+                'HEATING_AND_COOLING': {
+                    'below_four': 303,
+                    'four_or_more': 379,
+                }
+            }
         }
     }
 };

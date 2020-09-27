@@ -3,7 +3,8 @@ export const MAX_SHELTER_DEDUCTIONS = {
         '2020': 908
     },
     'DEFAULT': {
-        '2020': 569
+        '2020': 569,
+        '2021': 586,
     },
     'GUAM': {
         '2020': 667

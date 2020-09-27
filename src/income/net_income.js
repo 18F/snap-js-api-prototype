@@ -7,6 +7,7 @@ import { ChildSupportPaymentsDeduction } from '../deductions/child_support_payme
 
 export class NetIncome {
     constructor(inputs) {
+        this.target_year = inputs.target_year;
         this.household_includes_elderly_or_disabled = inputs.household_includes_elderly_or_disabled;
         this.gross_income = inputs.gross_income;
         this.state_or_territory = inputs.state_or_territory;
@@ -52,6 +53,7 @@ export class NetIncome {
         const standard_deduction = new StandardDeduction({
             'state_or_territory': this.state_or_territory,
             'household_size': this.household_size,
+            'target_year': this.target_year,
         }).calculate();
 
         const earned_income_deduction = new EarnedIncomeDeduction({

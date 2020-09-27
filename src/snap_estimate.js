@@ -216,6 +216,7 @@ export class SnapEstimate {
 
     calculate_net_income() {
         return new NetIncome({
+            'target_year': this.target_year,
             'household_includes_elderly_or_disabled': this.household_includes_elderly_or_disabled,
             'gross_income': this.gross_income,
             'state_or_territory': this.state_or_territory,
