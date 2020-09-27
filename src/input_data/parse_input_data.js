@@ -215,7 +215,7 @@ export class ParseInputs {
         }
 
         // Only support allowlist of years. Currently only 2020 is supported.
-        if ([2020].indexOf(try_parse_int) === -1) {
+        if ([2020, 2021].indexOf(try_parse_int) === -1) {
             this.errors.push(`Value for ${input_key} is not supported year.`);
             return false;
         }

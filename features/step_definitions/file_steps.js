@@ -78,6 +78,10 @@ Given('the household is not billed separately for any utilities', function () {
     this.utility_allowance = 'NONE';
 });
 
+Given('the SNAP fiscal year is {int}', function (target_year) {
+    this.target_year = target_year;
+});
+
 When('we run the benefit estimator...', function () {
   const snap_estimator = new SnapEstimateEntrypoint({
     'household_includes_elderly_or_disabled': this.household_includes_elderly_or_disabled,
@@ -93,6 +97,7 @@ When('we run the benefit estimator...', function () {
     'homeowners_insurance_and_taxes': this.homeowners_insurance_and_taxes || 0,
     'utility_allowance': this.utility_allowance || 'NONE',
     'use_emergency_allotment': this.use_emergency_allotment,
+    'target_year': this.target_year || null,
   });
 
   const result = snap_estimator.calculate();
