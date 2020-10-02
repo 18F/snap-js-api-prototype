@@ -94,7 +94,7 @@ export class SnapEstimate {
         this.rent_or_mortgage = inputs.rent_or_mortgage;
         this.homeowners_insurance_and_taxes = inputs.homeowners_insurance_and_taxes;
         this.utility_allowance = inputs.utility_allowance;
-        this.target_year = inputs.target_year || 2020;
+        this.target_year = inputs.target_year || 2021;
 
         const state_options = STATE_OPTIONS[this.state_or_territory][this.target_year];
         const uses_bbce = state_options.uses_bbce;

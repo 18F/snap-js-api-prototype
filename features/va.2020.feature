@@ -3,6 +3,7 @@ Feature: Virginia scenarios, no EA waiver
   Background:
     Given the household is in VA
     Given no emergency allotment waiver
+    Given the SNAP fiscal year is 2020
 
     # Defaults to override on a per-test basis:
     Given the household has earned income of $0 monthly
