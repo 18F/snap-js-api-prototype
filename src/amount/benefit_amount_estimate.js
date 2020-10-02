@@ -13,6 +13,7 @@ export class BenefitAmountEstimate {
         this.is_eligible = inputs.is_eligible;
         this.net_income = inputs.net_income;
         this.use_emergency_allotment = inputs.use_emergency_allotment;
+        this.target_year = inputs.target_year;
     }
 
     calculate() {
@@ -36,6 +37,7 @@ export class BenefitAmountEstimate {
         const max_allotment = new FetchMaxAllotment({
             'state_or_territory': this.state_or_territory,
             'household_size': this.household_size,
+            'target_year': this.target_year,
         }).calculate();
 
         const max_allotment_explanation = `The maximum allotment for this household is $${max_allotment}.`;
@@ -54,6 +56,7 @@ export class BenefitAmountEstimate {
         const min_allotment = new FetchMinAllotment({
             'state_or_territory': this.state_or_territory,
             'household_size': this.household_size,
+            'target_year': this.target_year,
         }).calculate();
 
         // Check if minimum allotment should be applied.

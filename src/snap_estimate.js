@@ -31,6 +31,7 @@ interface SnapEstimateInputs {
     utility_allowance?: ?string;
     court_ordered_child_support_payments?: ?number;
     use_emergency_allotment: boolean;
+    target_year: ?number;
 }
 */
 
@@ -50,6 +51,7 @@ export class SnapEstimate {
     rent_or_mortgage: ?number;
     homeowners_insurance_and_taxes: ?number;
     utility_allowance: ?string;
+    target_year: ?number;
 
     // State Options
     state_options: Object;
@@ -92,8 +94,9 @@ export class SnapEstimate {
         this.rent_or_mortgage = inputs.rent_or_mortgage;
         this.homeowners_insurance_and_taxes = inputs.homeowners_insurance_and_taxes;
         this.utility_allowance = inputs.utility_allowance;
+        this.target_year = inputs.target_year || 2021;
 
-        const state_options = STATE_OPTIONS[this.state_or_territory][2020];
+        const state_options = STATE_OPTIONS[this.state_or_territory][this.target_year];
         const uses_bbce = state_options.uses_bbce;
 
         this.gross_income_limit_factor = (uses_bbce)
@@ -121,6 +124,7 @@ export class SnapEstimate {
         this.net_monthly_income_limit = new FetchIncomeLimit({
             'state_or_territory': this.state_or_territory,
             'household_size': this.household_size,
+            'target_year': this.target_year,
         }).income_limit_lookup();
     }
 
@@ -153,6 +157,7 @@ export class SnapEstimate {
             'is_eligible': this.estimated_eligibility,
             'net_income': this.net_income,
             'use_emergency_allotment': (this.use_emergency_allotment || false),
+            'target_year': this.target_year,
         });
 
         const benefit_amount_calculation = benefit_amount_estimate.calculate();
@@ -211,6 +216,7 @@ export class SnapEstimate {
 
     calculate_net_income() {
         return new NetIncome({
+            'target_year': this.target_year,
             'household_includes_elderly_or_disabled': this.household_includes_elderly_or_disabled,
             'gross_income': this.gross_income,
             'state_or_territory': this.state_or_territory,

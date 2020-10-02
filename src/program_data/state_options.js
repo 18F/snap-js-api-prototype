@@ -57,6 +57,24 @@ export const STATE_OPTIONS /*: StateOptions */ = {
                 'PHONE': 30,
                 'SINGLE_UTILITY_ALLOWANCE': 74
             }
+        },
+        '2021': {
+            // Same as 2020:
+            'uses_bbce': true,
+            'resource_limit_elderly_or_disabled': null,
+            'resource_limit_elderly_or_disabled_income_twice_fpl': 3500,
+            'resource_limit_non_elderly_or_disabled': null,
+            'gross_income_limit_factor': 1.65,
+            'child_support_payments_treatment': 'EXCLUDE',
+            'standard_medical_deduction': true,
+            'standard_medical_deduction_amount': 200,
+            'standard_medical_deduction_ceiling': 200,
+            'standard_utility_allowances': {
+                'BASIC_LIMITED_ALLOWANCE': 328,
+                'HEATING_AND_COOLING': 478,
+                'PHONE': 30,
+                'SINGLE_UTILITY_ALLOWANCE': 74
+            }
         }
     },
     'VA': {
@@ -65,6 +83,20 @@ export const STATE_OPTIONS /*: StateOptions */ = {
             'uses_bbce': false,
             // State deduction options:
             'child_support_payments_treatment': 'EXCLUDE', // This matches materials provided by VPLC and VA DSS but not the latest USDA State Options Report
+            'standard_medical_deduction': true,
+            'standard_medical_deduction_amount': 200,
+            'standard_medical_deduction_ceiling': 235,
+            'standard_utility_allowances': {
+                'HEATING_AND_COOLING': {
+                    'below_four': 303,
+                    'four_or_more': 379,
+                }
+            }
+        },
+        '2021': {
+            // Same as 2020:
+            'uses_bbce': false,
+            'child_support_payments_treatment': 'EXCLUDE',
             'standard_medical_deduction': true,
             'standard_medical_deduction_amount': 200,
             'standard_medical_deduction_ceiling': 235,
