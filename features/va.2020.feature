@@ -158,7 +158,7 @@ Feature: Virginia scenarios, no EA waiver
     And the household has medical expenses for elderly or disabled members of $300 monthly
     When we run the benefit estimator...
       Then we find the family is likely eligible
-      Then we find the estimated benefit is $124 per month
+      Then we find the estimated benefit is $114 per month
 
 
   # STANDARD UTILITY ALLOWANCE #
