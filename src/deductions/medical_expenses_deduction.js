@@ -73,10 +73,10 @@ export class MedicalExpensesDeduction {
         );
 
         if (expenses_above_ceiling) {
-            const medical_expenses_deduction = this.medical_expenses_for_elderly_or_disabled;
+            const medical_expenses_deduction = this.medical_expenses_for_elderly_or_disabled - 35;
 
             explanation.push(
-                `Medical expenses are greater than the Standard Medical Deduction maximum amount of $${this.standard_medical_deduction_ceiling}. In this case, the full medical expense amount can be deducted, which comes to $${medical_expenses_deduction}. `
+                `Medical expenses are greater than the Standard Medical Deduction maximum amount of $${this.standard_medical_deduction_ceiling}. In this case, the full medical expense amount after $35 can be deducted, which comes to $${medical_expenses_deduction}. `
             );
 
             return {

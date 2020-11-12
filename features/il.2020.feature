@@ -158,12 +158,12 @@ Feature: Illinois scenarios, no EA waiver
       Then we find the family is likely eligible
       And we find the estimated benefit is $401 per month
 
-  Scenario: Medical expenses of $300 increase deduction by $300, benefit by $90
+  Scenario: Medical expenses of $335 increase deduction by $300, benefit by $90
     Given a 3-person household
     And the household does include an elderly or disabled member
     And the household has earned income of $400 monthly
     And the household has other income of $400 monthly
-    And the household has medical expenses for elderly or disabled members of $300 monthly
+    And the household has medical expenses for elderly or disabled members of $335 monthly
     When we run the benefit estimator...
       Then we find the family is likely eligible
       And we find the estimated benefit is $431 per month
